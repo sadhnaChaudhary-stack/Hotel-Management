@@ -1,11 +1,11 @@
-// 🔥 Navbar Sticky on Scroll
+// Navbar Sticky on Scroll
 window.addEventListener("scroll", function () {
   const header = document.querySelector(".header");
   header.classList.toggle("sticky", window.scrollY > 50);
 });
 
 
-// 🔥 Smooth Scroll (for nav links)
+// Smooth Scroll (for nav links)
 document.querySelectorAll("nav a").forEach(anchor => {
   anchor.addEventListener("click", function (e) {
     e.preventDefault();
@@ -19,7 +19,7 @@ document.querySelectorAll("nav a").forEach(anchor => {
 });
 
 
-// 🔥 Booking Validation
+// Booking Validation
 document.querySelector(".search-btn").addEventListener("click", () => {
   const checkIn = document.querySelectorAll("input")[0].value;
   const checkOut = document.querySelectorAll("input")[1].value;
@@ -32,7 +32,7 @@ document.querySelector(".search-btn").addEventListener("click", () => {
 });
 
 
-// 🔥 Scroll Animation (Fade In)
+// Scroll Animation (Fade In)
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -47,7 +47,7 @@ document.querySelectorAll("section").forEach(section => {
 });
 
 
-// 🔥 Button Click Effect
+// Button Click Effect
 document.querySelectorAll("button").forEach(btn => {
   btn.addEventListener("click", function () {
     this.style.transform = "scale(0.95)";
