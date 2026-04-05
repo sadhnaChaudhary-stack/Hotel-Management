@@ -1,58 +1,29 @@
-// Navbar Sticky on Scroll
-window.addEventListener("scroll", function () {
-  const header = document.querySelector(".header");
-  header.classList.toggle("sticky", window.scrollY > 50);
-});
+    // Navbar scroll shadow
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
+    });
 
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
 
-// Smooth Scroll (for nav links)
-document.querySelectorAll("nav a").forEach(anchor => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute("href"));
-    if (target) {
-      target.scrollIntoView({
-        behavior: "smooth"
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      console.log(entries);
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
       });
-    }
-  });
-});
+    }, { threshold: 0.12 });
 
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// Booking Validation
-document.querySelector(".search-btn").addEventListener("click", () => {
-  const checkIn = document.querySelectorAll("input")[0].value;
-  const checkOut = document.querySelectorAll("input")[1].value;
-
-  if (!checkIn || !checkOut) {
-    alert("Please select check-in and check-out dates!");
-  } else {
-    alert("Checking availability...");
-  }
-});
-
-
-// Scroll Animation (Fade In)
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("show");
-    }
-  });
-});
-
-document.querySelectorAll("section").forEach(section => {
-  section.classList.add("hidden");
-  observer.observe(section);
-});
-
-
-// Button Click Effect
-document.querySelectorAll("button").forEach(btn => {
-  btn.addEventListener("click", function () {
-    this.style.transform = "scale(0.95)";
-    setTimeout(() => {
-      this.style.transform = "scale(1)";
-    }, 150);
-  });
-});
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
