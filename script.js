@@ -1,6 +1,10 @@
     // Navbar scroll shadow
     window.addEventListener('scroll', () => {
-      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
+        const navbar = document.getElementById('navbar');
+        if (navbar) {window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 30);
+      });
+    }
     });
 
     function toggleNav() {
