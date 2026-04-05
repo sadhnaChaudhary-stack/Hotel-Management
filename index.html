@@ -1,218 +1,441 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luxury Hotel</title>
+  <title>Elite Haven</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <!-- cystom css -->
+     <link rel="stylesheet" href="style.css">
+  
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header class="header">
-  <div class="logo">Avalon</div>
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">Rooms</a>
-    <a href="#">Services</a>
-    <a href="#">Gallery</a>
-    <a href="#">Contact</a>
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-info">
+        <a href="tel:+919876543210"><i class="fa-solid fa-phone"></i>+91 98765 43210</a>
+        <a href="mailto:elitehaven.hotel@gmail.com"><i class="fa-solid fa-envelope"></i>elitehaven.hotel@gmail.com</a>
+        <a href="#"><i class="fa-solid fa-location-dot"></i>Sector 18, Noida</a>
+      </div>
+      <div class="top-socials">
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#"><i class="fa-brands fa-telegram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="logo">Elite<span>&nbsp;Haven</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#">Home</a></li>
+        <li><a href="#rooms">Rooms</a></li>
+        <li><a href="#amenities">Amenities</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="nav-btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Check
+        Availability</button>
+      <div class="hamburger" id="hamburger" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
   </nav>
-  <button class="book-btn">Book Now</button>
-</header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="overlay"></div>
-
-  <div class="hero-content">
-    <h4>WELCOME TO LUXURY</h4>
-    <h1>The Ultimate Luxury Hotel Experience</h1>
-    <p>Enjoy world-class comfort and premium services</p>
-
-    <div class="hero-buttons">
-      <button class="btn-primary">Explore Rooms</button>
-      <button class="btn-secondary">Watch Video</button>
-    </div>
-  </div>
-
-  <!-- BOOKING BAR -->
-  <div class="booking-bar">
-    <div class="field">
-      <label>Check In</label>
-      <input type="date">
-    </div>
-
-    <div class="field">
-      <label>Check Out</label>
-      <input type="date">
-    </div>
-
-    <div class="field">
-      <label>Rooms</label>
-      <select>
-        <option>1 Room</option>
-        <option>2 Rooms</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label>Guests</label>
-      <select>
-        <option>1 Adult</option>
-        <option>2 Adults</option>
-      </select>
-    </div>
-
-    <button class="search-btn">Check Availability</button>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="about">
-  <div class="about-container">
-
-    <div class="about-image">
-      <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945">
-      <div class="experience-badge">
-        <h2>16</h2>
-        <p>Years Experience</p>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        <span>Five Star Luxury Hotel</span>
+      </div>
+      <h1>Experience Timeless<br>Elegance &amp; <em>Tranquility</em></h1>
+      <p class="hero-desc">Nestled in comfort and sophistication, Elite Haven offers a perfect escape from the ordinary
+        — exquisite rooms, fine dining, and unforgettable experiences tailored just for you.</p>
+      <div class="hero-actions">
+        <a href="#booking" class="btn-primary">Book Your Stay</a>
+        <a href="#rooms" class="btn-outline">Explore Rooms</a>
       </div>
     </div>
 
-    <div class="about-content">
-      <h5>ABOUT US</h5>
-      <h2>Luxurious Comfort, Timeless Elegance Awaits</h2>
-      <p>We provide world-class hospitality with premium services.</p>
-
-      <div class="about-stats">
-        <div><h3>50+</h3><p>Rooms</p></div>
-        <div><h3>60k+</h3><p>Guests</p></div>
-        <div><h3>99%</h3><p>Satisfaction</p></div>
+    <div class="trust-strip">
+      <div class="container">
+        <div class="trust-item">
+          <div class="trust-num">500<span style="color:var(--gold);font-size:24px">+</span></div>
+          <div class="trust-label">Happy Guests</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-num">120<span style="color:var(--gold);font-size:24px">+</span></div>
+          <div class="trust-label">Luxury Rooms</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-num">15<span style="color:var(--gold);font-size:24px">+</span></div>
+          <div class="trust-label">Awards Won</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-num">4.9 <i class="fa-solid fa-star star-icon"></i></div>
+          <div class="trust-label">Average Rating</div>
+        </div>
       </div>
-
-      <h4 class="signature">Yash Gupta</h4>
-      <p>Owner</p>
     </div>
+  </section>
 
-  </div>
-</section>
-
-<!-- FEATURES STRIP -->
-<div class="features-strip">
-  Breakfast Included ✦ Swimming Pool ✦ High Speed Wifi ✦ Spa & Wellness
-</div>
-
-<!-- ROOMS -->
-<section class="rooms">
-  <h5>ROOMS & SUITES</h5>
-  <h2>Luxury Rooms & Suites</h2>
-
-  <div class="room-grid">
-
-    <div class="room-card">
-      <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a">
-      <h3>₹3000+ / night</h3>
-      <p>Standard Room</p>
+  <!-- ABOUT -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-wrapper reveal">
+          <div class="about-float-badge">
+            <strong>10+</strong>
+            <span>Years of<br>Excellence</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&q=80"
+            alt="Elite Haven Hotel Interior">
+          <div class="about-accent-box"></div>
+        </div>
+        <div class="reveal">
+          <p class="section-eyebrow">About Us</p>
+          <h2 class="section-title">A Legacy of Luxury &amp; <em>Comfort</em></h2>
+          <p class="section-body">At Elite Haven, we believe luxury is not just about lavish spaces — it's about
+            creating unforgettable experiences. From elegantly designed rooms to personalized services, every detail is
+            crafted to offer you the finest stay. Our dedicated team ensures every moment of your visit is
+            extraordinary.</p>
+          <div class="about-features">
+            <div class="about-feat-item"><i class="fa-solid fa-check-circle"></i> World-class Spa &amp; Wellness</div>
+            <div class="about-feat-item"><i class="fa-solid fa-check-circle"></i> Fine Dining Restaurants</div>
+            <div class="about-feat-item"><i class="fa-solid fa-check-circle"></i> 24/7 Concierge Service</div>
+            <div class="about-feat-item"><i class="fa-solid fa-check-circle"></i> Private Pool Suites</div>
+            <div class="about-feat-item"><i class="fa-solid fa-check-circle"></i> Airport Transfers</div>
+            <div class="about-feat-item"><i class="fa-solid fa-check-circle"></i> Business Conference Halls</div>
+          </div>
+          <a href="#" class="btn-green">Discover Our Story</a>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="room-card">
-      <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b">
-      <h3>₹5000+ / night</h3>
-      <p>Deluxe Room</p>
+  <!-- ROOMS -->
+  <section class="rooms-section" id="rooms">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-eyebrow" style="justify-content:center">Our Rooms</p>
+        <h2 class="section-title">Crafted for <em>Exceptional</em> Comfort</h2>
+      </div>
+      <div class="rooms-grid">
+        <div class="room-card reveal">
+          <div class="room-img">
+            <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80" alt="Deluxe Room">
+            <span class="room-tag">Deluxe</span>
+          </div>
+          <div class="room-body">
+            <h3 class="room-name">Deluxe Garden Room</h3>
+            <p class="room-desc">Spacious interiors with panoramic garden views, king-size bed, and luxurious bath
+              amenities.</p>
+            <div class="room-amenities">
+              <span class="room-amen"><i class="fa-solid fa-wifi"></i> Free WiFi</span>
+              <span class="room-amen"><i class="fa-solid fa-snowflake"></i> AC</span>
+              <span class="room-amen"><i class="fa-solid fa-tv"></i> Smart TV</span>
+              <span class="room-amen"><i class="fa-solid fa-martini-glass"></i> Minibar</span>
+            </div>
+            <div class="room-footer">
+              <div class="room-price"><strong>₹8,500</strong><span> / night</span></div>
+              <a href="#booking" class="btn-book">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="room-card reveal">
+          <div class="room-img">
+            <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=600&q=80" alt="Premium Suite">
+            <span class="room-tag" style="background:var(--green);color:white">Popular</span>
+          </div>
+          <div class="room-body">
+            <h3 class="room-name">Premium Suite</h3>
+            <p class="room-desc">A refined suite with separate living area, curated decor, and butler service available
+              around the clock.</p>
+            <div class="room-amenities">
+              <span class="room-amen"><i class="fa-solid fa-wifi"></i> Free WiFi</span>
+              <span class="room-amen"><i class="fa-solid fa-bath"></i> Jacuzzi</span>
+              <span class="room-amen"><i class="fa-solid fa-tv"></i> Smart TV</span>
+              <span class="room-amen"><i class="fa-solid fa-champagne-glasses"></i> Bar</span>
+            </div>
+            <div class="room-footer">
+              <div class="room-price"><strong>₹18,000</strong><span> / night</span></div>
+              <a href="#booking" class="btn-book">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="room-card reveal">
+          <div class="room-img">
+            <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600&q=80" alt="Royal Penthouse">
+            <span class="room-tag" style="background:var(--gold-dark);color:white">Penthouse</span>
+          </div>
+          <div class="room-body">
+            <h3 class="room-name">Royal Penthouse</h3>
+            <p class="room-desc">The pinnacle of luxury — a private penthouse with rooftop terrace, plunge pool, and
+              personalized butler.</p>
+            <div class="room-amenities">
+              <span class="room-amen"><i class="fa-solid fa-wifi"></i> Free WiFi</span>
+              <span class="room-amen"><i class="fa-solid fa-water-ladder"></i> Pool</span>
+              <span class="room-amen"><i class="fa-solid fa-utensils"></i> Chef</span>
+              <span class="room-amen"><i class="fa-solid fa-car"></i> Transfers</span>
+            </div>
+            <div class="room-footer">
+              <div class="room-price"><strong>₹55,000</strong><span> / night</span></div>
+              <a href="#booking" class="btn-book">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="room-card">
-      <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427">
-      <h3>₹8000+ / night</h3>
-      <p>Luxury Suite</p>
+  <!-- AMENITIES -->
+  <section class="amenities-section" id="amenities">
+    <div class="container">
+      <div class="amenities-layout">
+        <div>
+          <div class="section-header reveal" style="text-align:left;margin-bottom:40px">
+            <p class="section-eyebrow">Services &amp; Amenities</p>
+            <h2 class="section-title">Everything You <em>Desire</em></h2>
+          </div>
+          <div class="amenities-grid reveal">
+            <div class="amen-card">
+              <div class="amen-icon"><i class="fa-solid fa-spa"></i></div>
+              <h4>Luxury Spa</h4>
+              <p>Full-day wellness treatments and rejuvenating therapies.</p>
+            </div>
+            <div class="amen-card">
+              <div class="amen-icon"><i class="fa-solid fa-utensils"></i></div>
+              <h4>Fine Dining</h4>
+              <p>Multi-cuisine restaurants with award-winning chefs.</p>
+            </div>
+            <div class="amen-card">
+              <div class="amen-icon"><i class="fa-solid fa-water-ladder"></i></div>
+              <h4>Infinity Pool</h4>
+              <p>Temperature-controlled pool with panoramic city views.</p>
+            </div>
+            <div class="amen-card">
+              <div class="amen-icon"><i class="fa-solid fa-dumbbell"></i></div>
+              <h4>Fitness Center</h4>
+              <p>State-of-the-art gym open 24/7 with personal trainers.</p>
+            </div>
+            <div class="amen-card">
+              <div class="amen-icon"><i class="fa-solid fa-martini-glass"></i></div>
+              <h4>Rooftop Bar</h4>
+              <p>Signature cocktails and live music with skyline views.</p>
+            </div>
+            <div class="amen-card">
+              <div class="amen-icon"><i class="fa-solid fa-briefcase"></i></div>
+              <h4>Business Centre</h4>
+              <p>Conference rooms with high-speed internet and AV setup.</p>
+            </div>
+          </div>
+        </div>
+        <div class="amenities-image reveal">
+          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=700&q=80" alt="Hotel Amenities">
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="room-card">
-      <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2">
-      <h3>₹11000+ / night</h3>
-      <p>Premium Room</p>
+  <!-- GALLERY -->
+  <section class="gallery-section" id="gallery">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-eyebrow" style="justify-content:center">Gallery</p>
+        <h2 class="section-title">A Glimpse of <em>Elite Haven</em></h2>
+      </div>
+      <div class="gallery-grid reveal">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80" alt="Hotel Lobby">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=500&q=80" alt="Pool">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500&q=80" alt="Restaurant">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=500&q=80" alt="Room">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=500&q=80" alt="Spa">
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="room-card">
-      <img src="https://images.unsplash.com/photo-1566669437685-3d1a4bba0d54">
-      <h3>₹15000+ / night</h3>
-      <p>Royal Suite</p>
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-eyebrow" style="justify-content:center">Testimonials</p>
+        <h2 class="section-title">What Our Guests <em>Say</em></h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testi-card reveal">
+          <div class="testi-quote">"</div>
+          <p class="testi-text">An absolutely extraordinary stay. The staff anticipates every need before you even
+            realise it. The Royal Suite exceeded every expectation — pure heaven.</p>
+          <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+              class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <div class="testi-author">
+            <div class="testi-avatar">RK</div>
+            <div>
+              <div class="testi-name">Rahul Kapoor</div>
+              <div class="testi-loc">Mumbai, India</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="testi-quote">"</div>
+          <p class="testi-text">The spa experience alone is worth the visit. Immaculate rooms, impeccable service, and
+            food that rivals the finest restaurants in the city. We will return.</p>
+          <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+              class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <div class="testi-author">
+            <div class="testi-avatar">PS</div>
+            <div>
+              <div class="testi-name">Priya Sharma</div>
+              <div class="testi-loc">Delhi, India</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="testi-quote">"</div>
+          <p class="testi-text">Celebrated our anniversary here and it was magical. The personalised touches — rose
+            petals, champagne, a private balcony dinner — made it unforgettable.</p>
+          <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+              class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <div class="testi-author">
+            <div class="testi-avatar">AM</div>
+            <div>
+              <div class="testi-name">Arjun &amp; Meera</div>
+              <div class="testi-loc">Bengaluru, India</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="room-card">
-      <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7">
-      <h3>₹18000+ / night</h3>
-      <p>Family Suite</p>
+  <!-- BOOKING CTA -->
+  <section class="booking-section" id="booking">
+    <div class="container">
+      <div class="booking-inner">
+        <div class="reveal">
+          <h2>Ready to Experience <em>Unparalleled Luxury?</em></h2>
+          <p>Reserve your suite today and let us craft an unforgettable stay just for you.</p>
+        </div>
+        <div class="booking-form reveal">
+          <h3>Check Availability</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Check-In</label>
+              <input type="date">
+            </div>
+            <div class="form-group">
+              <label>Check-Out</label>
+              <input type="date">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Adults</label>
+              <select>
+                <option>1 Adult</option>
+                <option>2 Adults</option>
+                <option>3 Adults</option>
+                <option>4 Adults</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Room Type</label>
+              <select>
+                <option>Deluxe Room</option>
+                <option>Premium Suite</option>
+                <option>Royal Penthouse</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn-submit">Check Availability →</button>
+        </div>
+      </div>
     </div>
+  </section>
 
-  </div>
-</section>
-
-<!-- OFFER -->
-<section class="offer">
-  <div class="offer-content">
-    <h5>OFFERS & DISCOUNTS</h5>
-    <h2>Limited Time Holiday Sale</h2>
-    <button>Book Now</button>
-  </div>
-</section>
-
-<!-- AWARDS -->
-<section class="awards">
-  <h5>OUR ACHIEVEMENTS</h5>
-  <h2>Proudly Recognized for Excellence</h2>
-
-  <div class="award-grid">
-    <div>2024 - Luxury Hotel Award</div>
-    <div>2023 - Best Hospitality</div>
-    <div>2022 - Customer Choice</div>
-    <div>2021 - Excellence Award</div>
-  </div>
-</section>
-
-<!-- MENU -->
-<section class="menu">
-  <h5>RESTAURANT MENU</h5>
-  <h2>Discover Our Delicious Menu</h2>
-
-  <div class="menu-list">
-    <div class="menu-item"><span>Pasta</span></div>
-    <div class="menu-item"><span>Burger</span></div>
-    <div class="menu-item"><span>Pizza</span></div>
-  </div>
-</section>
-
-<!-- TESTIMONIAL -->
-<section class="testimonials">
-  <h5>GUEST REVIEWS</h5>
-  <h2>What Our Guests Are Saying</h2>
-
-  <div class="testimonial-grid">
-    <div class="testimonial">
-      <p>"Amazing experience!"</p>
-      <h4>Vandana</h4>
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="logo">Elite<span>&nbsp;Haven</span></span>
+          <p>Where luxury meets tranquility. A sanctuary of world-class hospitality, refined elegance, and unforgettable
+            moments.</p>
+          <div class="footer-socials">
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-telegram"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#rooms">Rooms &amp; Suites</a></li>
+            <li><a href="#amenities">Amenities</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#about">About Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Services</h5>
+          <ul>
+            <li><a href="#">Spa &amp; Wellness</a></li>
+            <li><a href="#">Fine Dining</a></li>
+            <li><a href="#">Events &amp; Weddings</a></li>
+            <li><a href="#">Business Meetings</a></li>
+            <li><a href="#">Airport Transfer</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i><span>Plot No. 27, Sector 18, Noida,
+              UP</span></div>
+          <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><span>+91 98765 43210</span></div>
+          <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><span>elitehaven.hotel@gmail.com</span>
+          </div>
+          <div class="footer-contact-item"><i class="fa-solid fa-clock"></i><span>Check-in: 2PM | Check-out: 12PM</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 <span>Elite Haven Hotel</span>. All rights reserved.</p>
+        <p>Privacy Policy · Terms of Service · Cookie Policy</p>
+      </div>
     </div>
+  </footer>
 
-    <div class="testimonial">
-      <p>"Excellent hospitality!"</p>
-      <h4>Sadhna</h4>
-    </div>
 
-    <div class="testimonial">
-      <p>"Luxurious Rooms"</p>
-      <h4>Bhoomika</h4>
-    </div>
-  </div>
-</section>
 
-<link rel="stylesheet" href="style.css">
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
