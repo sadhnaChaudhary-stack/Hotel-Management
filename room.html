@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elite Haven</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+
+  <!-- cystom css -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  </head>
+
+  <body>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+      <div class="container">
+        <div class="top-info">
+          <a href="tel:+919876543210"><i class="fa-solid fa-phone"></i>+91 98765 43210</a>
+          <a href="mailto:elitehaven.hotel@gmail.com"><i class="fa-solid fa-envelope"></i>elitehaven.hotel@gmail.com</a>
+          <a href="#"><i class="fa-solid fa-location-dot"></i>Sector 18, Noida</a>
+        </div>
+        <div class="top-socials">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#"><i class="fa-brands fa-telegram"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+      <div class="container">
+        <a href="#" class="logo">Elite<span>&nbsp;Haven</span></a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="room.html">Rooms</a></li>
+          <li><a href="#amenities">Amenities</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="nav-btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Check
+          Availability</button>
+        <div class="hamburger" id="hamburger" onclick="toggleNav()">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="room-hero-bg"></div>
+      <div class="container room-hero-content">
+        <div class="room-hero-badge">
+          <span>Rooms &amp; Suites</span>
+        </div>
+        <h1>Where <em>luxury</em><br>meets repose</h1>
+        <p class="room-hero-sub">Every room at Elite Haven is a sanctuary — curated with artisan detail, natural
+          materials, and an unwavering commitment to your comfort.</p>
+      </div>
+      <div class="room-hero-scroll">
+        <span>Explore</span>
+      </div>
+    </section>
+
+    <!-- ROOMS SECTION -->
+    <section class="rooms-section">
+      <div class="container">
+
+        <div class="section-intro reveal">
+          <div class="section-eyebrow">Our Accommodations</div>
+          <h2>Choose your <em>perfect</em> retreat</h2>
+          <p>From thoughtfully appointed standard rooms to our signature grand suites, every space is a world unto
+            itself.</p>
+        </div>
+
+        <div class="rooms-grid">
+
+          <!-- SUITE — Featured -->
+          <div class="room-card featured reveal">
+            <div class="room-card-img">
+              <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=900&q=80" alt="Grand Suite" />
+              <div class="room-tag premium">Signature Suite</div>
+            </div>
+            <div class="room-card-body">
+              <div class="room-card-top">
+                <h3>The Grand <em>Suite</em></h3>
+                <div class="room-price-row">
+                  <span class="room-price">₹42,000</span>
+                  <span class="room-price-label">/ night</span>
+                </div>
+                <div class="room-stats">
+                  <div class="room-stat">
+                    <span class="room-stat-val">120 m²</span>
+                    <span class="room-stat-key">Area</span>
+                  </div>
+                  <div class="room-stat">
+                    <span class="room-stat-val">2</span>
+                    <span class="room-stat-key">Guests</span>
+                  </div>
+                  <div class="room-stat">
+                    <span class="room-stat-val">King</span>
+                    <span class="room-stat-key">Bed</span>
+                  </div>
+                </div>
+                <div class="room-divider"></div>
+                <p class="room-desc">Our crown jewel — a sweeping suite with a private terrace, butler service, and
+                  panoramic views. Handcrafted furnishings, a deep-soak marble bath, and a dedicated dining alcove
+                  complete this unmatched experience.</p>
+                <div class="room-amenities">
+                  <span class="amenity-pill">Private Terrace</span>
+                  <span class="amenity-pill">Butler Service</span>
+                  <span class="amenity-pill">Marble Bath</span>
+                  <span class="amenity-pill">Dining Alcove</span>
+                  <span class="amenity-pill">Panoramic View</span>
+                  <span class="amenity-pill">Espresso Bar</span>
+                </div>
+              </div>
+              <button class="btn-book gold-btn">
+                Book Now
+                <svg viewBox="0 0 24 24" stroke="currentColor" fill="none">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- STANDARD ROOM -->
+          <div class="room-card reveal">
+            <div class="room-card-img">
+              <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=700&q=80" alt="Standard Room" />
+              <div class="room-tag">Standard</div>
+            </div>
+            <div class="room-card-body">
+              <div class="room-card-top">
+                <h3>Standard <em>Room</em></h3>
+                <div class="room-price-row">
+                  <span class="room-price">₹8,500</span>
+                  <span class="room-price-label">/ night</span>
+                </div>
+                <div class="room-stats">
+                  <div class="room-stat">
+                    <span class="room-stat-val">28 m²</span>
+                    <span class="room-stat-key">Area</span>
+                  </div>
+                  <div class="room-stat">
+                    <span class="room-stat-val">2</span>
+                    <span class="room-stat-key">Guests</span>
+                  </div>
+                  <div class="room-stat">
+                    <span class="room-stat-val">Queen</span>
+                    <span class="room-stat-key">Bed</span>
+                  </div>
+                </div>
+                <div class="room-divider"></div>
+                <p class="room-desc">Elegantly furnished with warm tones, premium linen, and all the comforts expected
+                  at Elite Haven. The perfect base for the discerning traveller.</p>
+                <div class="room-amenities">
+                  <span class="amenity-pill">City View</span>
+                  <span class="amenity-pill">Rain Shower</span>
+                  <span class="amenity-pill">Free Wi-Fi</span>
+                  <span class="amenity-pill">Mini Bar</span>
+                </div>
+              </div>
+              <button class="btn-book">
+                Book Now
+                <svg viewBox="0 0 24 24" stroke="currentColor" fill="none">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- DELUXE ROOM -->
+          <div class="room-card reveal">
+            <div class="room-card-img">
+              <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=700&q=80" alt="Deluxe Room" />
+              <div class="room-tag">Deluxe</div>
+            </div>
+            <div class="room-card-body">
+              <div class="room-card-top">
+                <h3>Deluxe <em>Room</em></h3>
+                <div class="room-price-row">
+                  <span class="room-price">₹14,000</span>
+                  <span class="room-price-label">/ night</span>
+                </div>
+                <div class="room-stats">
+                  <div class="room-stat">
+                    <span class="room-stat-val">42 m²</span>
+                    <span class="room-stat-key">Area</span>
+                  </div>
+                  <div class="room-stat">
+                    <span class="room-stat-val">2</span>
+                    <span class="room-stat-key">Guests</span>
+                  </div>
+                  <div class="room-stat">
+                    <span class="room-stat-val">King</span>
+                    <span class="room-stat-key">Bed</span>
+                  </div>
+                </div>
+                <div class="room-divider"></div>
+                <p class="room-desc">An elevated retreat with a sitting area, premium amenities, and garden or pool
+                  views. Artisan details and curated in-room touches make every moment memorable.</p>
+                <div class="room-amenities">
+                  <span class="amenity-pill">Pool View</span>
+                  <span class="amenity-pill">Sitting Area</span>
+                  <span class="amenity-pill">Soaking Tub</span>
+                  <span class="amenity-pill">Nespresso</span>
+                </div>
+              </div>
+              <button class="btn-book">
+                Book Now
+                <svg viewBox="0 0 24 24" stroke="currentColor" fill="none">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- EXECUTIVE ROOM — spans 2 cols on wide screens via a subtle layout shift -->
+          <div class="room-card reveal" style="grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1.3fr;">
+            <div class="room-card-img" style="height: 100%; min-height: 340px;">
+              <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&q=80" alt="Executive Room" />
+              <div class="room-tag">Executive</div>
+            </div>
+            <div class="room-card-body" style="padding: 40px 48px;">
+              <div class="room-card-top">
+                <h3>Executive <em>Room</em></h3>
+                <div class="room-price-row">
+                  <span class="room-price">₹22,000</span>
+                  <span class="room-price-label">/ night</span>
+                </div>
+                <div class="room-stats">
+                  <div class="room-stat">
+                    <span class="room-stat-val">65 m²</span>
+                    <span class="room-stat-key">Area</span>
+                  </div>
+                  <div class="room-stat">
+                    <span class="room-stat-val">2</span>
+                    <span class="room-stat-key">Guests</span>
+                  </div>
+                  <div class="room-stat">
+                    <span class="room-stat-val">King</span>
+                    <span class="room-stat-key">Bed</span>
+                  </div>
+                </div>
+                <div class="room-divider"></div>
+                <p class="room-desc">Designed for the modern executive — a private workspace, lounge seating, and access
+                  to our exclusive Executive Lounge. Features premium bath amenities, pillow menu, and dedicated
+                  concierge support for a seamlessly productive stay.</p>
+                <div class="room-amenities">
+                  <span class="amenity-pill">Executive Lounge Access</span>
+                  <span class="amenity-pill">Private Workspace</span>
+                  <span class="amenity-pill">Pillow Menu</span>
+                  <span class="amenity-pill">Dedicated Concierge</span>
+                  <span class="amenity-pill">Lounge Chair</span>
+                  <span class="amenity-pill">Floor-to-Ceiling View</span>
+                </div>
+              </div>
+              <button class="btn-book">
+                Book Now
+                <svg viewBox="0 0 24 24" stroke="currentColor" fill="none">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+        </div><!-- .rooms-grid -->
+      </div><!-- .container -->
+    </section>
+
+    <!-- PROMISE STRIP -->
+    <div class="promise-strip">
+      <div class="container">
+        <div class="promise-item">
+          <div class="promise-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <div class="promise-text">
+            <strong>Best Rate Guarantee</strong>
+            <span>Book direct for the lowest price</span>
+          </div>
+        </div>
+        <div class="promise-item">
+          <div class="promise-icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 6v6l4 2" />
+            </svg>
+          </div>
+          <div class="promise-text">
+            <strong>24/7 Concierge</strong>
+            <span>At your service, always</span>
+          </div>
+        </div>
+        <div class="promise-item">
+          <div class="promise-icon">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+          </div>
+          <div class="promise-text">
+            <strong>Curated Experiences</strong>
+            <span>Tailored to your every wish</span>
+          </div>
+        </div>
+        <div class="promise-item">
+          <div class="promise-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+          </div>
+          <div class="promise-text">
+            <strong>Free Cancellation</strong>
+            <span>Up to 48 hours before arrival</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SECTION 3 — AMENITIES
+═══════════════════════════════════════════ -->
+    <section class="amenities-section" id="amenities">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Hotel Amenities</div>
+          <h2>Every comfort,<br><em>thoughtfully</em> curated</h2>
+          <p>From morning to midnight, Elite Haven's amenities are designed to elevate every moment of your stay.</p>
+        </div>
+
+        <div class="amenities-tabs reveal">
+          <button class="tab-btn active" data-tab="rooms">In-Room</button>
+          <button class="tab-btn" data-tab="wellness">Wellness</button>
+          <button class="tab-btn" data-tab="dining">Dining</button>
+          <button class="tab-btn" data-tab="services">Services</button>
+        </div>
+
+        <!-- IN-ROOM -->
+        <div class="tab-panel active reveal" id="tab-rooms">
+          <div class="amenity-card">
+            <div class="amenity-icon"><svg viewBox="0 0 24 24">
+                <path d="M1 6l11 7L23 6" />
+                <rect x="1" y="6" width="22" height="13" rx="2" />
+              </svg></div>
+            <h4>4K Smart TV</h4>
+            <p>Curated streaming channels & premium content library</p>
+          </div>
+          <div class="amenity-card">
+            <div class="amenity-icon"><svg viewBox="0 0 24 24">
+                <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+                <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+                <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+                <circle cx="12" cy="20" r="1" />
+              </svg></div>
+            <h4>High-Speed WiFi</h4>
+            <p>Complimentary 1 Gbps fibre throughout the property</p>
+          </div>
+          <div class="amenity-card">
+            <div class="amenity-icon"><svg viewBox="0 0 24 24">
+                <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+                <line x1="6" y1="1" x2="6" y2="4" />
+                <line x1="10" y1="1" x2="10" y2="4" />
+                <line x1="14" y1="1" x2="14" y2="4" />
+              </svg></div>
+            <h4>Nespresso Bar</h4>
+            <p>Artisan single-origin coffee & curated tea selection</p>
+          </div>
+          <div class="amenity-card">
+            <div class="amenity-icon"><svg viewBox="0 0 24 24">
+                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                <path d="M12 6v6l4 2" />
+              </svg></div>
+            <h4>24h Room Service</h4>
+            <p>Full menu dining delivered to your door, anytime</p>
+          </div>
+          <div class="amenity-card">
+            <div class="amenity-icon"><svg viewBox="0 0 24 24">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+              </svg></div>
+            <h4>Pillow Menu</h4>
+            <p>Eight pillow types for your perfect night's sleep</p>
+          </div>
+          <div class="amenity-card">
+            <div class="amenity-icon"><svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="5" />
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+              </svg></div>
+            <h4>Blackout Drapery</h4>
+            <p>Motorised blinds with light-sensing automation</p>
+          </div>
+          <div class="amenity-card">
+            <div class="amenity-icon"><svg viewBox="0 0 24 24">
+                <rect x="5" y="2" width="14" height="20" rx="2" />
+                <line x1="12" y1="18" x2="12.01" y2="18" />
+              </svg></div>
+            <h4>Smart Room Control</h4>
+            <p>Climate, lighting & entertainment via app or tablet</p>
+          </div>
+          <div class="amenity-card">
+            <div class="amenity-icon"><svg viewBox="0 0 24 24">
+                <path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+              </svg></div>
+            <h4>In-Room Safe</h4>
+            <p>Laptop-size digital safe in every room</p>
+          </div>
+        </div>
+
+        <!-- WELLNESS -->
+        <div class="tab-panel" id="tab-wellness">
+          <div class="amenity-card">
+            <div class="amenity-icon"><svg viewBox="0 0 24 24">
+                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                <path d="M4.93 4.93l4.24 4.24" />
+              </svg></div>
+            <h4>Infinity Pool</h4>
+            <p>Rooftop heated pool open sunrise to midnight</p>
+          </div>
+          <div class="amenity-card">
+            <div class="amenity-icon"><svg viewBox="0 0 24 24">
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+              </svg></div>
+            <h4>Signature Spa</h4>
+            <p>12 treatment rooms with Ayurvedic & modern therapies</p>
+          </div>
+          <div class="amenity-card">
+            <div class="amenity-icon"><svg viewBox="0 0 24 24">
+                <circle cx="12" cy="5" r="3" />
+                <path d="M6.5 8a2.5 2.5 0 0 0 0 5H8v4h8v-4h1.5a2.5 2.5 0 0 0 0-5h-11z" />
+              </svg></div>
+            <h4>Yoga & Meditation</h4>
+            <p>Daily guided sessions on the sky terrace</p>
+          </div>
+          <div class="amenity-card">
+            <div class="amenity-icon"><svg viewBox="0 0 24 24">
+                <line x1="18" y1="20" x2="18" y2="10" />
+                <line x1="12" y1="20" x2="12" y2="4" />
+                <line x1="6" y1="20" x2="6" y2="14" />
+              </svg></div>
+            <h4>Fitness Centre</h4>
+            <p>Technogym equipment · Personal training available</p>
+          </div>
+        </div>
+
+        <!-- DINING -->
+        <div class="tab-panel" id="tab-dining">
+          <div class="amenity-card">
+            <div class="amenity-icon"><svg viewBox="0 0 24 24">
+                <path d="M3 2l1.5 1.5" />
+                <path d="M9 2l-1.5 1.5" />
+                <path d="M6 2v6c0 1.66 1.34 3 3 3s3-1.34 3-3V2" />
+                <path d="M6 11v9" />
+              </svg></div>
+            <h4>The Amber</h4>
+            <p>Signature restaurant — farm-to-table fine dining</p>
+          </div>
+          <div class="amenity-card">
+            <div class="amenity-icon"><svg viewBox="0 0 24 24">
+                <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+                <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z" />
+              </svg></div>
+            <h4>Gold Bar Lounge</h4>
+            <p>Handcrafted cocktails · Live jazz · Fri–Sat</p>
+          </div>
+          <div class="amenity-card">
+            <div class="amenity-icon"><svg viewBox="0 0 24 24">
+                <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+                <line x1="6" y1="1" x2="6" y2="4" />
+                <line x1="10" y1="1" x2="10" y2="4" />
+              </svg></div>
+            <h4>All-Day Café</h4>
+            <p>Light bites, pastries & specialty coffee from 7am</p>
+          </div>
+          <div class="amenity-card">
+            <div class="amenity-icon"><svg viewBox="0 0 24 24">
+                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                <path d="M12 6v6l4 2" />
+              </svg></div>
+            <h4>In-Room Dining</h4>
+            <p>Full menu available 24 hours, 7 days a week</p>
+          </div>
+        </div>
+
+        <!-- SERVICES -->
+        <div class="tab-panel" id="tab-services">
+          <div class="amenity-card">
+            <div class="amenity-icon"><svg viewBox="0 0 24 24">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg></div>
+            <h4>Dedicated Butler</h4>
+            <p>Personal butler service for Suite guests</p>
+          </div>
+          <div class="amenity-card">
+            <div class="amenity-icon"><svg viewBox="0 0 24 24">
+                <rect x="1" y="3" width="15" height="13" rx="1" />
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                <circle cx="5.5" cy="18.5" r="2.5" />
+                <circle cx="18.5" cy="18.5" r="2.5" />
+              </svg></div>
+            <h4>Airport Transfer</h4>
+            <p>Chauffeur-driven luxury vehicles · 24/7</p>
+          </div>
+          <div class="amenity-card">
+            <div class="amenity-icon"><svg viewBox="0 0 24 24">
+                <path
+                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+              </svg></div>
+            <h4>Laundry & Press</h4>
+            <p>Same-day service · Dry cleaning available</p>
+          </div>
+          <div class="amenity-card">
+            <div class="amenity-icon"><svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg></div>
+            <h4>Concierge 24/7</h4>
+            <p>Reservations, tickets & local expertise · Always on</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+   
+
+
+
+
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-eyebrow" style="justify-content:center">Testimonials</p>
+          <h2 class="section-title">What Our Guests <em>Say</em></h2>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testi-card reveal">
+            <div class="testi-quote">"</div>
+            <p class="testi-text">An absolutely extraordinary stay. The staff anticipates every need before you even
+              realise it. The Royal Suite exceeded every expectation — pure heaven.</p>
+            <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <div class="testi-author">
+              <div class="testi-avatar">RK</div>
+              <div>
+                <div class="testi-name">Rahul Kapoor</div>
+                <div class="testi-loc">Mumbai, India</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card reveal">
+            <div class="testi-quote">"</div>
+            <p class="testi-text">The spa experience alone is worth the visit. Immaculate rooms, impeccable service, and
+              food that rivals the finest restaurants in the city. We will return.</p>
+            <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <div class="testi-author">
+              <div class="testi-avatar">PS</div>
+              <div>
+                <div class="testi-name">Priya Sharma</div>
+                <div class="testi-loc">Delhi, India</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card reveal">
+            <div class="testi-quote">"</div>
+            <p class="testi-text">Celebrated our anniversary here and it was magical. The personalised touches — rose
+              petals, champagne, a private balcony dinner — made it unforgettable.</p>
+            <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <div class="testi-author">
+              <div class="testi-avatar">AM</div>
+              <div>
+                <div class="testi-name">Arjun &amp; Meera</div>
+                <div class="testi-loc">Bengaluru, India</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+     <!-- ═══════════════════════════════════════════
+     SECTION 4 — LOCATION / MAP
+═══════════════════════════════════════════ -->
+    <section class="map-section" id="location">
+      <div class="container">
+        <div class="map-layout">
+
+          <!-- INFO PANEL -->
+          <div class="map-info reveal left">
+            <div class="eyebrow">Location</div>
+            <h2>Find us in the<br><em>heart</em> of the city</h2>
+
+            <div class="map-address">
+              <svg viewBox="0 0 24 24">
+                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              <div class="map-address-text">
+                <strong>Elite Haven Hotel</strong>
+                <span>14 Regal Boulevard, Connaught Place<br>New Delhi, 110001 · India</span>
+              </div>
+            </div>
+
+            <div class="map-distances">
+              <h4>Nearby Landmarks</h4>
+              <div class="distance-item">
+                <div class="dist-left">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.24h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.37a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16" />
+                  </svg>
+                  <span>Indira Gandhi International Airport</span>
+                </div>
+                <span class="dist-right">28 min · 16 km</span>
+              </div>
+              <div class="distance-item">
+                <div class="dist-left">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 8v4l3 3" />
+                  </svg>
+                  <span>India Gate</span>
+                </div>
+                <span class="dist-right">8 min · 3.5 km</span>
+              </div>
+              <div class="distance-item">
+                <div class="dist-left">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                  </svg>
+                  <span>Rashtrapati Bhavan</span>
+                </div>
+                <span class="dist-right">12 min · 4 km</span>
+              </div>
+              <div class="distance-item">
+                <div class="dist-left">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="2" y="7" width="20" height="14" rx="2" />
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                  </svg>
+                  <span>Connaught Place Shopping</span>
+                </div>
+                <span class="dist-right">Walk · 400 m</span>
+              </div>
+              <div class="distance-item">
+                <div class="dist-left">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+                    <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+                  </svg>
+                  <span>Lodi Garden</span>
+                </div>
+                <span class="dist-right">15 min · 5 km</span>
+              </div>
+            </div>
+
+            <button class="map-btn">
+              Get Directions
+              <svg viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- MAP VISUAL -->
+          <div class="map-visual reveal right">
+            <canvas id="mapCanvas" height="520"></canvas>
+            <div class="map-ring"></div>
+            <div class="map-ring"></div>
+            <div class="map-ring"></div>
+            <div class="map-pin-badge">
+              <div class="map-pin-dot"></div>
+              Elite Haven
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- BOOKING CTA -->
+    <section class="booking-section" id="booking">
+      <div class="container">
+        <div class="booking-inner">
+          <div class="reveal">
+            <h2>Ready to Experience <em>Unparalleled Luxury?</em></h2>
+            <p>Reserve your suite today and let us craft an unforgettable stay just for you.</p>
+          </div>
+          <div class="booking-form reveal">
+            <h3>Check Availability</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Check-In</label>
+                <input type="date">
+              </div>
+              <div class="form-group">
+                <label>Check-Out</label>
+                <input type="date">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Adults</label>
+                <select>
+                  <option>1 Adult</option>
+                  <option>2 Adults</option>
+                  <option>3 Adults</option>
+                  <option>4 Adults</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Room Type</label>
+                <select>
+                  <option>Deluxe Room</option>
+                  <option>Premium Suite</option>
+                  <option>Royal Penthouse</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn-submit">Check Availability →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <span class="logo">Elite<span>&nbsp;Haven</span></span>
+            <p>Where luxury meets tranquility. A sanctuary of world-class hospitality, refined elegance, and
+              unforgettable
+              moments.</p>
+            <div class="footer-socials">
+              <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#"><i class="fa-brands fa-youtube"></i></a>
+              <a href="#"><i class="fa-brands fa-telegram"></i></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h5>Quick Links</h5>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#rooms">Rooms &amp; Suites</a></li>
+              <li><a href="#amenities">Amenities</a></li>
+              <li><a href="#gallery">Gallery</a></li>
+              <li><a href="#about">About Us</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Services</h5>
+            <ul>
+              <li><a href="#">Spa &amp; Wellness</a></li>
+              <li><a href="#">Fine Dining</a></li>
+              <li><a href="#">Events &amp; Weddings</a></li>
+              <li><a href="#">Business Meetings</a></li>
+              <li><a href="#">Airport Transfer</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Contact</h5>
+            <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i><span>Plot No. 27, Sector 18,
+                Noida,
+                UP</span></div>
+            <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><span>+91 98765 43210</span></div>
+            <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><span>elitehaven.hotel@gmail.com</span>
+            </div>
+            <div class="footer-contact-item"><i class="fa-solid fa-clock"></i><span>Check-in: 2PM | Check-out:
+                12PM</span>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2025 <span>Elite Haven Hotel</span>. All rights reserved.</p>
+          <p>Privacy Policy · Terms of Service · Cookie Policy</p>
+        </div>
+      </div>
+    </footer>
+
+
+
+    <script src="script.js"></script>
+  </body>
+
+</html>
