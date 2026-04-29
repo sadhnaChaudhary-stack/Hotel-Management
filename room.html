@@ -1,821 +1,538 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Elite Haven</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
-    rel="stylesheet">
-
-
-  <!-- cystom css -->
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rooms &amp; Suites – HotelLuxe</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
 </head>
-
 <body>
-  </head>
 
-  <body>
-
-    <!-- TOP BAR -->
-    <div class="top-bar">
-      <div class="container">
-        <div class="top-info">
-          <a href="tel:+919876543210"><i class="fa-solid fa-phone"></i>+91 98765 43210</a>
-          <a href="mailto:elitehaven.hotel@gmail.com"><i class="fa-solid fa-envelope"></i>elitehaven.hotel@gmail.com</a>
-          <a href="#"><i class="fa-solid fa-location-dot"></i>Sector 18, Noida</a>
-        </div>
-        <div class="top-socials">
-          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#"><i class="fa-brands fa-youtube"></i></a>
-          <a href="#"><i class="fa-brands fa-telegram"></i></a>
-        </div>
-      </div>
+  <!-- PRELOADER -->
+  <div id="preloader" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;z-index:9999;">
+    <div style="text-align:center;">
+      <div style="width:50px;height:50px;border:3px solid rgba(201,168,76,0.2);border-top-color:#c9a84c;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px;"></div>
+      <p style="color:#c9a84c;font-size:0.8rem;letter-spacing:3px;text-transform:uppercase;font-family:'Poppins',sans-serif;margin:0;">Loading...</p>
     </div>
+    <style>@keyframes spin{to{transform:rotate(360deg);}}</style>
+  </div>
 
-    <!-- NAVBAR -->
-    <nav class="navbar" id="navbar">
-      <div class="container">
-        <a href="#" class="logo">Elite<span>&nbsp;Haven</span></a>
-        <ul class="nav-links" id="navLinks">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="room.html">Rooms</a></li>
-          <li><a href="#amenities">Amenities</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+  <!--
+    JAVA/JSP: <%@ include file="fragments/header.html" %>
+  -->
+
+  <!-- NAVBAR (same as header fragment) -->
+  <nav class="navbar navbar-expand-lg navbar-custom scrolled">
+    <div class="container">
+      <a class="navbar-brand navbar-brand-text" href="index.html">Hotel<span>Luxe</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-1">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="rooms.html">Rooms</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#amenities">Amenities</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#gallery">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+          <li class="nav-item ms-lg-3"><a class="nav-link" href="login.html">Login</a></li>
+          <li class="nav-item"><a class="nav-link btn-nav-book" href="rooms.html">Book Now</a></li>
         </ul>
-        <button class="nav-btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Check
-          Availability</button>
-        <div class="hamburger" id="hamburger" onclick="toggleNav()">
-          <span></span><span></span><span></span>
-        </div>
-      </div>
-    </nav>
-
-    <!-- HERO -->
-    <section class="hero">
-      <div class="room-hero-bg"></div>
-      <div class="container room-hero-content">
-        <div class="room-hero-badge">
-          <span>Rooms &amp; Suites</span>
-        </div>
-        <h1>Where <em>luxury</em><br>meets repose</h1>
-        <p class="room-hero-sub">Every room at Elite Haven is a sanctuary — curated with artisan detail, natural
-          materials, and an unwavering commitment to your comfort.</p>
-      </div>
-      <div class="room-hero-scroll">
-        <span>Explore</span>
-      </div>
-    </section>
-
-    <!-- ROOMS SECTION -->
-    <section class="rooms-section">
-      <div class="container">
-
-        <div class="section-intro reveal">
-          <div class="section-eyebrow">Our Accommodations</div>
-          <h2>Choose your <em>perfect</em> retreat</h2>
-          <p>From thoughtfully appointed standard rooms to our signature grand suites, every space is a world unto
-            itself.</p>
-        </div>
-
-        <div class="rooms-grid">
-
-          <!-- SUITE — Featured -->
-          <div class="room-card featured reveal">
-            <div class="room-card-img">
-              <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=900&q=80" alt="Grand Suite" />
-              <div class="room-tag premium">Signature Suite</div>
-            </div>
-            <div class="room-card-body">
-              <div class="room-card-top">
-                <h3>The Grand <em>Suite</em></h3>
-                <div class="room-price-row">
-                  <span class="room-price">₹42,000</span>
-                  <span class="room-price-label">/ night</span>
-                </div>
-                <div class="room-stats">
-                  <div class="room-stat">
-                    <span class="room-stat-val">120 m²</span>
-                    <span class="room-stat-key">Area</span>
-                  </div>
-                  <div class="room-stat">
-                    <span class="room-stat-val">2</span>
-                    <span class="room-stat-key">Guests</span>
-                  </div>
-                  <div class="room-stat">
-                    <span class="room-stat-val">King</span>
-                    <span class="room-stat-key">Bed</span>
-                  </div>
-                </div>
-                <div class="room-divider"></div>
-                <p class="room-desc">Our crown jewel — a sweeping suite with a private terrace, butler service, and
-                  panoramic views. Handcrafted furnishings, a deep-soak marble bath, and a dedicated dining alcove
-                  complete this unmatched experience.</p>
-                <div class="room-amenities">
-                  <span class="amenity-pill">Private Terrace</span>
-                  <span class="amenity-pill">Butler Service</span>
-                  <span class="amenity-pill">Marble Bath</span>
-                  <span class="amenity-pill">Dining Alcove</span>
-                  <span class="amenity-pill">Panoramic View</span>
-                  <span class="amenity-pill">Espresso Bar</span>
-                </div>
-              </div>
-              <button class="btn-book gold-btn">
-                Book Now
-                <svg viewBox="0 0 24 24" stroke="currentColor" fill="none">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- STANDARD ROOM -->
-          <div class="room-card reveal">
-            <div class="room-card-img">
-              <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=700&q=80" alt="Standard Room" />
-              <div class="room-tag">Standard</div>
-            </div>
-            <div class="room-card-body">
-              <div class="room-card-top">
-                <h3>Standard <em>Room</em></h3>
-                <div class="room-price-row">
-                  <span class="room-price">₹8,500</span>
-                  <span class="room-price-label">/ night</span>
-                </div>
-                <div class="room-stats">
-                  <div class="room-stat">
-                    <span class="room-stat-val">28 m²</span>
-                    <span class="room-stat-key">Area</span>
-                  </div>
-                  <div class="room-stat">
-                    <span class="room-stat-val">2</span>
-                    <span class="room-stat-key">Guests</span>
-                  </div>
-                  <div class="room-stat">
-                    <span class="room-stat-val">Queen</span>
-                    <span class="room-stat-key">Bed</span>
-                  </div>
-                </div>
-                <div class="room-divider"></div>
-                <p class="room-desc">Elegantly furnished with warm tones, premium linen, and all the comforts expected
-                  at Elite Haven. The perfect base for the discerning traveller.</p>
-                <div class="room-amenities">
-                  <span class="amenity-pill">City View</span>
-                  <span class="amenity-pill">Rain Shower</span>
-                  <span class="amenity-pill">Free Wi-Fi</span>
-                  <span class="amenity-pill">Mini Bar</span>
-                </div>
-              </div>
-              <button class="btn-book">
-                Book Now
-                <svg viewBox="0 0 24 24" stroke="currentColor" fill="none">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- DELUXE ROOM -->
-          <div class="room-card reveal">
-            <div class="room-card-img">
-              <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=700&q=80" alt="Deluxe Room" />
-              <div class="room-tag">Deluxe</div>
-            </div>
-            <div class="room-card-body">
-              <div class="room-card-top">
-                <h3>Deluxe <em>Room</em></h3>
-                <div class="room-price-row">
-                  <span class="room-price">₹14,000</span>
-                  <span class="room-price-label">/ night</span>
-                </div>
-                <div class="room-stats">
-                  <div class="room-stat">
-                    <span class="room-stat-val">42 m²</span>
-                    <span class="room-stat-key">Area</span>
-                  </div>
-                  <div class="room-stat">
-                    <span class="room-stat-val">2</span>
-                    <span class="room-stat-key">Guests</span>
-                  </div>
-                  <div class="room-stat">
-                    <span class="room-stat-val">King</span>
-                    <span class="room-stat-key">Bed</span>
-                  </div>
-                </div>
-                <div class="room-divider"></div>
-                <p class="room-desc">An elevated retreat with a sitting area, premium amenities, and garden or pool
-                  views. Artisan details and curated in-room touches make every moment memorable.</p>
-                <div class="room-amenities">
-                  <span class="amenity-pill">Pool View</span>
-                  <span class="amenity-pill">Sitting Area</span>
-                  <span class="amenity-pill">Soaking Tub</span>
-                  <span class="amenity-pill">Nespresso</span>
-                </div>
-              </div>
-              <button class="btn-book">
-                Book Now
-                <svg viewBox="0 0 24 24" stroke="currentColor" fill="none">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- EXECUTIVE ROOM — spans 2 cols on wide screens via a subtle layout shift -->
-          <div class="room-card reveal" style="grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1.3fr;">
-            <div class="room-card-img" style="height: 100%; min-height: 340px;">
-              <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&q=80" alt="Executive Room" />
-              <div class="room-tag">Executive</div>
-            </div>
-            <div class="room-card-body" style="padding: 40px 48px;">
-              <div class="room-card-top">
-                <h3>Executive <em>Room</em></h3>
-                <div class="room-price-row">
-                  <span class="room-price">₹22,000</span>
-                  <span class="room-price-label">/ night</span>
-                </div>
-                <div class="room-stats">
-                  <div class="room-stat">
-                    <span class="room-stat-val">65 m²</span>
-                    <span class="room-stat-key">Area</span>
-                  </div>
-                  <div class="room-stat">
-                    <span class="room-stat-val">2</span>
-                    <span class="room-stat-key">Guests</span>
-                  </div>
-                  <div class="room-stat">
-                    <span class="room-stat-val">King</span>
-                    <span class="room-stat-key">Bed</span>
-                  </div>
-                </div>
-                <div class="room-divider"></div>
-                <p class="room-desc">Designed for the modern executive — a private workspace, lounge seating, and access
-                  to our exclusive Executive Lounge. Features premium bath amenities, pillow menu, and dedicated
-                  concierge support for a seamlessly productive stay.</p>
-                <div class="room-amenities">
-                  <span class="amenity-pill">Executive Lounge Access</span>
-                  <span class="amenity-pill">Private Workspace</span>
-                  <span class="amenity-pill">Pillow Menu</span>
-                  <span class="amenity-pill">Dedicated Concierge</span>
-                  <span class="amenity-pill">Lounge Chair</span>
-                  <span class="amenity-pill">Floor-to-Ceiling View</span>
-                </div>
-              </div>
-              <button class="btn-book">
-                Book Now
-                <svg viewBox="0 0 24 24" stroke="currentColor" fill="none">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-        </div><!-- .rooms-grid -->
-      </div><!-- .container -->
-    </section>
-
-    <!-- PROMISE STRIP -->
-    <div class="promise-strip">
-      <div class="container">
-        <div class="promise-item">
-          <div class="promise-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            </svg>
-          </div>
-          <div class="promise-text">
-            <strong>Best Rate Guarantee</strong>
-            <span>Book direct for the lowest price</span>
-          </div>
-        </div>
-        <div class="promise-item">
-          <div class="promise-icon">
-            <svg viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="10" />
-              <path d="M12 6v6l4 2" />
-            </svg>
-          </div>
-          <div class="promise-text">
-            <strong>24/7 Concierge</strong>
-            <span>At your service, always</span>
-          </div>
-        </div>
-        <div class="promise-item">
-          <div class="promise-icon">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-            </svg>
-          </div>
-          <div class="promise-text">
-            <strong>Curated Experiences</strong>
-            <span>Tailored to your every wish</span>
-          </div>
-        </div>
-        <div class="promise-item">
-          <div class="promise-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-              <polyline points="9 22 9 12 15 12 15 22" />
-            </svg>
-          </div>
-          <div class="promise-text">
-            <strong>Free Cancellation</strong>
-            <span>Up to 48 hours before arrival</span>
-          </div>
-        </div>
       </div>
     </div>
+  </nav>
 
-    <!-- ═══════════════════════════════════════════
-     SECTION 3 — AMENITIES
-═══════════════════════════════════════════ -->
-    <section class="amenities-section" id="amenities">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="eyebrow">Hotel Amenities</div>
-          <h2>Every comfort,<br><em>thoughtfully</em> curated</h2>
-          <p>From morning to midnight, Elite Haven's amenities are designed to elevate every moment of your stay.</p>
-        </div>
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb breadcrumb-custom">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Rooms &amp; Suites</li>
+        </ol>
+      </nav>
+      <h1 class="page-title animate-on-scroll">Our Rooms &amp; Suites</h1>
+      <p style="color:rgba(255,255,255,0.65);font-size:1.05rem;max-width:500px;margin-top:12px;" class="animate-on-scroll delay-2">
+        Discover rooms crafted for every traveller — from solo adventurers to luxury seekers.
+      </p>
+    </div>
+  </section>
 
-        <div class="amenities-tabs reveal">
-          <button class="tab-btn active" data-tab="rooms">In-Room</button>
-          <button class="tab-btn" data-tab="wellness">Wellness</button>
-          <button class="tab-btn" data-tab="dining">Dining</button>
-          <button class="tab-btn" data-tab="services">Services</button>
-        </div>
-
-        <!-- IN-ROOM -->
-        <div class="tab-panel active reveal" id="tab-rooms">
-          <div class="amenity-card">
-            <div class="amenity-icon"><svg viewBox="0 0 24 24">
-                <path d="M1 6l11 7L23 6" />
-                <rect x="1" y="6" width="22" height="13" rx="2" />
-              </svg></div>
-            <h4>4K Smart TV</h4>
-            <p>Curated streaming channels & premium content library</p>
+  <!-- FILTER BAR -->
+  <div class="container" style="position:relative;z-index:10;">
+    <div class="filter-bar animate-on-scroll">
+      <form id="filterForm">
+        <div class="row g-3 align-items-end">
+          <div class="col-lg-2 col-md-4 col-6">
+            <label class="form-label">Check-In</label>
+            <input type="date" class="form-control" id="fCheckIn"/>
           </div>
-          <div class="amenity-card">
-            <div class="amenity-icon"><svg viewBox="0 0 24 24">
-                <path d="M5 12.55a11 11 0 0 1 14.08 0" />
-                <path d="M1.42 9a16 16 0 0 1 21.16 0" />
-                <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
-                <circle cx="12" cy="20" r="1" />
-              </svg></div>
-            <h4>High-Speed WiFi</h4>
-            <p>Complimentary 1 Gbps fibre throughout the property</p>
+          <div class="col-lg-2 col-md-4 col-6">
+            <label class="form-label">Check-Out</label>
+            <input type="date" class="form-control" id="fCheckOut"/>
           </div>
-          <div class="amenity-card">
-            <div class="amenity-icon"><svg viewBox="0 0 24 24">
-                <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
-                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
-                <line x1="6" y1="1" x2="6" y2="4" />
-                <line x1="10" y1="1" x2="10" y2="4" />
-                <line x1="14" y1="1" x2="14" y2="4" />
-              </svg></div>
-            <h4>Nespresso Bar</h4>
-            <p>Artisan single-origin coffee & curated tea selection</p>
+          <div class="col-lg-2 col-md-4 col-6">
+            <label class="form-label">Guests</label>
+            <select class="form-select">
+              <option>1 Guest</option>
+              <option>2 Guests</option>
+              <option>3 Guests</option>
+              <option>4+ Guests</option>
+            </select>
           </div>
-          <div class="amenity-card">
-            <div class="amenity-icon"><svg viewBox="0 0 24 24">
-                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
-                <path d="M12 6v6l4 2" />
-              </svg></div>
-            <h4>24h Room Service</h4>
-            <p>Full menu dining delivered to your door, anytime</p>
+          <div class="col-lg-2 col-md-4 col-6">
+            <label class="form-label">Room Type</label>
+            <select class="form-select" id="roomType">
+              <option value="">All Types</option>
+              <option value="standard">Standard</option>
+              <option value="deluxe">Deluxe</option>
+              <option value="suite">Suite</option>
+              <option value="presidential">Presidential</option>
+              <option value="family">Family</option>
+            </select>
           </div>
-          <div class="amenity-card">
-            <div class="amenity-icon"><svg viewBox="0 0 24 24">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                <polyline points="9 22 9 12 15 12 15 22" />
-              </svg></div>
-            <h4>Pillow Menu</h4>
-            <p>Eight pillow types for your perfect night's sleep</p>
+          <div class="col-lg-2 col-md-4 col-6">
+            <label class="form-label">Max Price (₹)</label>
+            <select class="form-select" id="maxPrice">
+              <option value="">Any Price</option>
+              <option value="6000">Under ₹6,000</option>
+              <option value="10000">Under ₹10,000</option>
+              <option value="15000">Under ₹15,000</option>
+              <option value="25000">Under ₹25,000</option>
+            </select>
           </div>
-          <div class="amenity-card">
-            <div class="amenity-icon"><svg viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="5" />
-                <line x1="12" y1="1" x2="12" y2="3" />
-                <line x1="12" y1="21" x2="12" y2="23" />
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                <line x1="1" y1="12" x2="3" y2="12" />
-                <line x1="21" y1="12" x2="23" y2="12" />
-              </svg></div>
-            <h4>Blackout Drapery</h4>
-            <p>Motorised blinds with light-sensing automation</p>
-          </div>
-          <div class="amenity-card">
-            <div class="amenity-icon"><svg viewBox="0 0 24 24">
-                <rect x="5" y="2" width="14" height="20" rx="2" />
-                <line x1="12" y1="18" x2="12.01" y2="18" />
-              </svg></div>
-            <h4>Smart Room Control</h4>
-            <p>Climate, lighting & entertainment via app or tablet</p>
-          </div>
-          <div class="amenity-card">
-            <div class="amenity-icon"><svg viewBox="0 0 24 24">
-                <path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
-                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-              </svg></div>
-            <h4>In-Room Safe</h4>
-            <p>Laptop-size digital safe in every room</p>
-          </div>
-        </div>
-
-        <!-- WELLNESS -->
-        <div class="tab-panel" id="tab-wellness">
-          <div class="amenity-card">
-            <div class="amenity-icon"><svg viewBox="0 0 24 24">
-                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
-                <path d="M4.93 4.93l4.24 4.24" />
-              </svg></div>
-            <h4>Infinity Pool</h4>
-            <p>Rooftop heated pool open sunrise to midnight</p>
-          </div>
-          <div class="amenity-card">
-            <div class="amenity-icon"><svg viewBox="0 0 24 24">
-                <path
-                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-              </svg></div>
-            <h4>Signature Spa</h4>
-            <p>12 treatment rooms with Ayurvedic & modern therapies</p>
-          </div>
-          <div class="amenity-card">
-            <div class="amenity-icon"><svg viewBox="0 0 24 24">
-                <circle cx="12" cy="5" r="3" />
-                <path d="M6.5 8a2.5 2.5 0 0 0 0 5H8v4h8v-4h1.5a2.5 2.5 0 0 0 0-5h-11z" />
-              </svg></div>
-            <h4>Yoga & Meditation</h4>
-            <p>Daily guided sessions on the sky terrace</p>
-          </div>
-          <div class="amenity-card">
-            <div class="amenity-icon"><svg viewBox="0 0 24 24">
-                <line x1="18" y1="20" x2="18" y2="10" />
-                <line x1="12" y1="20" x2="12" y2="4" />
-                <line x1="6" y1="20" x2="6" y2="14" />
-              </svg></div>
-            <h4>Fitness Centre</h4>
-            <p>Technogym equipment · Personal training available</p>
-          </div>
-        </div>
-
-        <!-- DINING -->
-        <div class="tab-panel" id="tab-dining">
-          <div class="amenity-card">
-            <div class="amenity-icon"><svg viewBox="0 0 24 24">
-                <path d="M3 2l1.5 1.5" />
-                <path d="M9 2l-1.5 1.5" />
-                <path d="M6 2v6c0 1.66 1.34 3 3 3s3-1.34 3-3V2" />
-                <path d="M6 11v9" />
-              </svg></div>
-            <h4>The Amber</h4>
-            <p>Signature restaurant — farm-to-table fine dining</p>
-          </div>
-          <div class="amenity-card">
-            <div class="amenity-icon"><svg viewBox="0 0 24 24">
-                <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
-                <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z" />
-              </svg></div>
-            <h4>Gold Bar Lounge</h4>
-            <p>Handcrafted cocktails · Live jazz · Fri–Sat</p>
-          </div>
-          <div class="amenity-card">
-            <div class="amenity-icon"><svg viewBox="0 0 24 24">
-                <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
-                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
-                <line x1="6" y1="1" x2="6" y2="4" />
-                <line x1="10" y1="1" x2="10" y2="4" />
-              </svg></div>
-            <h4>All-Day Café</h4>
-            <p>Light bites, pastries & specialty coffee from 7am</p>
-          </div>
-          <div class="amenity-card">
-            <div class="amenity-icon"><svg viewBox="0 0 24 24">
-                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
-                <path d="M12 6v6l4 2" />
-              </svg></div>
-            <h4>In-Room Dining</h4>
-            <p>Full menu available 24 hours, 7 days a week</p>
-          </div>
-        </div>
-
-        <!-- SERVICES -->
-        <div class="tab-panel" id="tab-services">
-          <div class="amenity-card">
-            <div class="amenity-icon"><svg viewBox="0 0 24 24">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg></div>
-            <h4>Dedicated Butler</h4>
-            <p>Personal butler service for Suite guests</p>
-          </div>
-          <div class="amenity-card">
-            <div class="amenity-icon"><svg viewBox="0 0 24 24">
-                <rect x="1" y="3" width="15" height="13" rx="1" />
-                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
-                <circle cx="5.5" cy="18.5" r="2.5" />
-                <circle cx="18.5" cy="18.5" r="2.5" />
-              </svg></div>
-            <h4>Airport Transfer</h4>
-            <p>Chauffeur-driven luxury vehicles · 24/7</p>
-          </div>
-          <div class="amenity-card">
-            <div class="amenity-icon"><svg viewBox="0 0 24 24">
-                <path
-                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-              </svg></div>
-            <h4>Laundry & Press</h4>
-            <p>Same-day service · Dry cleaning available</p>
-          </div>
-          <div class="amenity-card">
-            <div class="amenity-icon"><svg viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg></div>
-            <h4>Concierge 24/7</h4>
-            <p>Reservations, tickets & local expertise · Always on</p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-
-   
-
-
-
-
-
-    <!-- TESTIMONIALS -->
-    <section class="testimonials-section">
-      <div class="container">
-        <div class="section-header reveal">
-          <p class="section-eyebrow" style="justify-content:center">Testimonials</p>
-          <h2 class="section-title">What Our Guests <em>Say</em></h2>
-        </div>
-        <div class="testimonials-grid">
-          <div class="testi-card reveal">
-            <div class="testi-quote">"</div>
-            <p class="testi-text">An absolutely extraordinary stay. The staff anticipates every need before you even
-              realise it. The Royal Suite exceeded every expectation — pure heaven.</p>
-            <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-            <div class="testi-author">
-              <div class="testi-avatar">RK</div>
-              <div>
-                <div class="testi-name">Rahul Kapoor</div>
-                <div class="testi-loc">Mumbai, India</div>
-              </div>
-            </div>
-          </div>
-          <div class="testi-card reveal">
-            <div class="testi-quote">"</div>
-            <p class="testi-text">The spa experience alone is worth the visit. Immaculate rooms, impeccable service, and
-              food that rivals the finest restaurants in the city. We will return.</p>
-            <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-            <div class="testi-author">
-              <div class="testi-avatar">PS</div>
-              <div>
-                <div class="testi-name">Priya Sharma</div>
-                <div class="testi-loc">Delhi, India</div>
-              </div>
-            </div>
-          </div>
-          <div class="testi-card reveal">
-            <div class="testi-quote">"</div>
-            <p class="testi-text">Celebrated our anniversary here and it was magical. The personalised touches — rose
-              petals, champagne, a private balcony dinner — made it unforgettable.</p>
-            <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-            <div class="testi-author">
-              <div class="testi-avatar">AM</div>
-              <div>
-                <div class="testi-name">Arjun &amp; Meera</div>
-                <div class="testi-loc">Bengaluru, India</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-     <!-- ═══════════════════════════════════════════
-     SECTION 4 — LOCATION / MAP
-═══════════════════════════════════════════ -->
-    <section class="map-section" id="location">
-      <div class="container">
-        <div class="map-layout">
-
-          <!-- INFO PANEL -->
-          <div class="map-info reveal left">
-            <div class="eyebrow">Location</div>
-            <h2>Find us in the<br><em>heart</em> of the city</h2>
-
-            <div class="map-address">
-              <svg viewBox="0 0 24 24">
-                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              <div class="map-address-text">
-                <strong>Elite Haven Hotel</strong>
-                <span>14 Regal Boulevard, Connaught Place<br>New Delhi, 110001 · India</span>
-              </div>
-            </div>
-
-            <div class="map-distances">
-              <h4>Nearby Landmarks</h4>
-              <div class="distance-item">
-                <div class="dist-left">
-                  <svg viewBox="0 0 24 24">
-                    <path
-                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.24h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.37a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16" />
-                  </svg>
-                  <span>Indira Gandhi International Airport</span>
-                </div>
-                <span class="dist-right">28 min · 16 km</span>
-              </div>
-              <div class="distance-item">
-                <div class="dist-left">
-                  <svg viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M12 8v4l3 3" />
-                  </svg>
-                  <span>India Gate</span>
-                </div>
-                <span class="dist-right">8 min · 3.5 km</span>
-              </div>
-              <div class="distance-item">
-                <div class="dist-left">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                  </svg>
-                  <span>Rashtrapati Bhavan</span>
-                </div>
-                <span class="dist-right">12 min · 4 km</span>
-              </div>
-              <div class="distance-item">
-                <div class="dist-left">
-                  <svg viewBox="0 0 24 24">
-                    <rect x="2" y="7" width="20" height="14" rx="2" />
-                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-                  </svg>
-                  <span>Connaught Place Shopping</span>
-                </div>
-                <span class="dist-right">Walk · 400 m</span>
-              </div>
-              <div class="distance-item">
-                <div class="dist-left">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
-                    <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
-                  </svg>
-                  <span>Lodi Garden</span>
-                </div>
-                <span class="dist-right">15 min · 5 km</span>
-              </div>
-            </div>
-
-            <button class="map-btn">
-              Get Directions
-              <svg viewBox="0 0 24 24">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
+          <div class="col-lg-2 col-md-4 col-12">
+            <button type="submit" class="btn-search-rooms">
+              <i class="fas fa-search me-2"></i>Search Rooms
             </button>
           </div>
+        </div>
+      </form>
+    </div>
+  </div>
 
-          <!-- MAP VISUAL -->
-          <div class="map-visual reveal right">
-            <canvas id="mapCanvas" height="520"></canvas>
-            <div class="map-ring"></div>
-            <div class="map-ring"></div>
-            <div class="map-ring"></div>
-            <div class="map-pin-badge">
-              <div class="map-pin-dot"></div>
-              Elite Haven
-            </div>
-          </div>
-
+  <!-- ROOMS LISTING -->
+  <section class="section-wrapper">
+    <div class="container">
+      <!-- Toolbar -->
+      <div class="rooms-toolbar animate-on-scroll">
+        <p class="rooms-count">
+          Showing <strong id="roomsCount">9</strong> rooms available
+        </p>
+        <div class="d-flex align-items-center gap-3">
+          <label style="font-size:0.85rem;color:var(--text-light);">Sort by:</label>
+          <select class="form-select form-select-sm" id="sortSelect" style="width:auto;border-color:#e8e8e8;border-radius:8px;font-size:0.85rem;">
+            <option value="">Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+          </select>
         </div>
       </div>
-    </section>
 
+      <!-- Room Grid -->
+      <div class="row g-4" id="roomsGrid">
 
-    <!-- BOOKING CTA -->
-    <section class="booking-section" id="booking">
+        <!-- Room 1: Standard -->
+        <div class="col-lg-4 col-md-6 room-card-wrapper animate-on-scroll delay-1" data-type="standard" data-price="4500">
+          <div class="room-card">
+            <div class="room-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80" alt="Standard Room" loading="lazy"/>
+              <span class="room-card-badge">Standard</span>
+              <div class="room-card-overlay">
+                <a href="room-details.html" class="btn-gold btn-sm">Quick View</a>
+              </div>
+            </div>
+            <div class="room-card-body">
+              <h5 class="room-card-title">Standard Twin Room</h5>
+              <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:12px;">
+                Comfortable twin-bed room ideal for solo travelers or colleagues. Modern décor with city view.
+              </p>
+              <div class="room-card-amenities">
+                <span class="amenity-chip"><i class="fas fa-wifi"></i> WiFi</span>
+                <span class="amenity-chip"><i class="fas fa-snowflake"></i> AC</span>
+                <span class="amenity-chip"><i class="fas fa-tv"></i> TV</span>
+                <span class="amenity-chip"><i class="fas fa-user"></i> 2 Guests</span>
+              </div>
+            </div>
+            <div class="room-card-footer">
+              <div class="room-price"><span class="amount">₹4,500</span><span class="per">/night</span></div>
+              <a href="room-details.html" class="btn-view">View Details</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Room 2: Deluxe -->
+        <div class="col-lg-4 col-md-6 room-card-wrapper animate-on-scroll delay-2" data-type="deluxe" data-price="8500">
+          <div class="room-card">
+            <div class="room-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80" alt="Deluxe Room" loading="lazy"/>
+              <span class="room-card-badge">Popular</span>
+              <div class="room-card-overlay">
+                <a href="room-details.html" class="btn-gold btn-sm">Quick View</a>
+              </div>
+            </div>
+            <div class="room-card-body">
+              <h5 class="room-card-title">Deluxe King Room</h5>
+              <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:12px;">
+                Spacious king-size room with premium furnishings, city view balcony and premium bath.
+              </p>
+              <div class="room-card-amenities">
+                <span class="amenity-chip"><i class="fas fa-wifi"></i> WiFi</span>
+                <span class="amenity-chip"><i class="fas fa-snowflake"></i> AC</span>
+                <span class="amenity-chip"><i class="fas fa-tv"></i> Smart TV</span>
+                <span class="amenity-chip"><i class="fas fa-bath"></i> Bathtub</span>
+              </div>
+            </div>
+            <div class="room-card-footer">
+              <div class="room-price"><span class="amount">₹8,500</span><span class="per">/night</span></div>
+              <a href="room-details.html" class="btn-view">View Details</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Room 3: Suite -->
+        <div class="col-lg-4 col-md-6 room-card-wrapper animate-on-scroll delay-3" data-type="suite" data-price="18000">
+          <div class="room-card">
+            <div class="room-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600&q=80" alt="Suite" loading="lazy"/>
+              <span class="room-card-badge" style="background:#e74c3c;color:#fff;">Luxury</span>
+              <div class="room-card-overlay">
+                <a href="room-details.html" class="btn-gold btn-sm">Quick View</a>
+              </div>
+            </div>
+            <div class="room-card-body">
+              <h5 class="room-card-title">Executive Suite</h5>
+              <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:12px;">
+                Lavish suite with separate living area, panoramic sea view and dedicated butler service.
+              </p>
+              <div class="room-card-amenities">
+                <span class="amenity-chip"><i class="fas fa-wifi"></i> WiFi</span>
+                <span class="amenity-chip"><i class="fas fa-utensils"></i> Breakfast</span>
+                <span class="amenity-chip"><i class="fas fa-concierge-bell"></i> Butler</span>
+                <span class="amenity-chip"><i class="fas fa-spa"></i> Spa</span>
+              </div>
+            </div>
+            <div class="room-card-footer">
+              <div class="room-price"><span class="amount">₹18,000</span><span class="per">/night</span></div>
+              <a href="room-details.html" class="btn-view">View Details</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Room 4: Family -->
+        <div class="col-lg-4 col-md-6 room-card-wrapper animate-on-scroll delay-1" data-type="family" data-price="12000">
+          <div class="room-card">
+            <div class="room-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1591088398332-8596b433f5ac?w=600&q=80" alt="Family Room" loading="lazy"/>
+              <span class="room-card-badge" style="background:#2ecc71;color:#fff;">Family</span>
+              <div class="room-card-overlay">
+                <a href="room-details.html" class="btn-gold btn-sm">Quick View</a>
+              </div>
+            </div>
+            <div class="room-card-body">
+              <h5 class="room-card-title">Family Comfort Room</h5>
+              <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:12px;">
+                Two queen beds with kids' corner and option for connecting room — perfect for families.
+              </p>
+              <div class="room-card-amenities">
+                <span class="amenity-chip"><i class="fas fa-wifi"></i> WiFi</span>
+                <span class="amenity-chip"><i class="fas fa-child"></i> Kids</span>
+                <span class="amenity-chip"><i class="fas fa-snowflake"></i> AC</span>
+                <span class="amenity-chip"><i class="fas fa-tv"></i> Smart TV</span>
+              </div>
+            </div>
+            <div class="room-card-footer">
+              <div class="room-price"><span class="amount">₹12,000</span><span class="per">/night</span></div>
+              <a href="room-details.html" class="btn-view">View Details</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Room 5: Presidential -->
+        <div class="col-lg-4 col-md-6 room-card-wrapper animate-on-scroll delay-2" data-type="presidential" data-price="35000">
+          <div class="room-card">
+            <div class="room-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=600&q=80" alt="Presidential Suite" loading="lazy"/>
+              <span class="room-card-badge" style="background:linear-gradient(135deg,#c9a84c,#e8c96a);color:#1a1a2e;">Presidential</span>
+              <div class="room-card-overlay">
+                <a href="room-details.html" class="btn-gold btn-sm">Quick View</a>
+              </div>
+            </div>
+            <div class="room-card-body">
+              <h5 class="room-card-title">Presidential Suite</h5>
+              <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:12px;">
+                The pinnacle of luxury — private pool, personal chef, chauffeur, and 360° panoramic views.
+              </p>
+              <div class="room-card-amenities">
+                <span class="amenity-chip"><i class="fas fa-swimming-pool"></i> Private Pool</span>
+                <span class="amenity-chip"><i class="fas fa-user-tie"></i> Chef</span>
+                <span class="amenity-chip"><i class="fas fa-car"></i> Chauffeur</span>
+                <span class="amenity-chip"><i class="fas fa-spa"></i> Spa</span>
+              </div>
+            </div>
+            <div class="room-card-footer">
+              <div class="room-price"><span class="amount">₹35,000</span><span class="per">/night</span></div>
+              <a href="room-details.html" class="btn-view">View Details</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Room 6: Standard Single -->
+        <div class="col-lg-4 col-md-6 room-card-wrapper animate-on-scroll delay-3" data-type="standard" data-price="3500">
+          <div class="room-card">
+            <div class="room-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=600&q=80" alt="Standard Single" loading="lazy"/>
+              <span class="room-card-badge">Standard</span>
+              <div class="room-card-overlay">
+                <a href="room-details.html" class="btn-gold btn-sm">Quick View</a>
+              </div>
+            </div>
+            <div class="room-card-body">
+              <h5 class="room-card-title">Standard Single Room</h5>
+              <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:12px;">
+                Perfect for solo business or leisure travel. Compact, cozy and fully equipped.
+              </p>
+              <div class="room-card-amenities">
+                <span class="amenity-chip"><i class="fas fa-wifi"></i> WiFi</span>
+                <span class="amenity-chip"><i class="fas fa-snowflake"></i> AC</span>
+                <span class="amenity-chip"><i class="fas fa-tv"></i> TV</span>
+                <span class="amenity-chip"><i class="fas fa-briefcase"></i> Work Desk</span>
+              </div>
+            </div>
+            <div class="room-card-footer">
+              <div class="room-price"><span class="amount">₹3,500</span><span class="per">/night</span></div>
+              <a href="room-details.html" class="btn-view">View Details</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Room 7: Deluxe Double -->
+        <div class="col-lg-4 col-md-6 room-card-wrapper animate-on-scroll delay-1" data-type="deluxe" data-price="9500">
+          <div class="room-card">
+            <div class="room-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1586105251261-72a756497a11?w=600&q=80" alt="Deluxe Double" loading="lazy"/>
+              <span class="room-card-badge">Deluxe</span>
+              <div class="room-card-overlay">
+                <a href="room-details.html" class="btn-gold btn-sm">Quick View</a>
+              </div>
+            </div>
+            <div class="room-card-body">
+              <h5 class="room-card-title">Deluxe Double Room</h5>
+              <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:12px;">
+                Ideal for couples. Romantic ambiance with premium linens and jacuzzi bathroom.
+              </p>
+              <div class="room-card-amenities">
+                <span class="amenity-chip"><i class="fas fa-wifi"></i> WiFi</span>
+                <span class="amenity-chip"><i class="fas fa-hot-tub"></i> Jacuzzi</span>
+                <span class="amenity-chip"><i class="fas fa-wine-glass"></i> Mini Bar</span>
+                <span class="amenity-chip"><i class="fas fa-tv"></i> Smart TV</span>
+              </div>
+            </div>
+            <div class="room-card-footer">
+              <div class="room-price"><span class="amount">₹9,500</span><span class="per">/night</span></div>
+              <a href="room-details.html" class="btn-view">View Details</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Room 8: Junior Suite -->
+        <div class="col-lg-4 col-md-6 room-card-wrapper animate-on-scroll delay-2" data-type="suite" data-price="14000">
+          <div class="room-card">
+            <div class="room-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=80" alt="Junior Suite" loading="lazy"/>
+              <span class="room-card-badge" style="background:#9b59b6;color:#fff;">Junior Suite</span>
+              <div class="room-card-overlay">
+                <a href="room-details.html" class="btn-gold btn-sm">Quick View</a>
+              </div>
+            </div>
+            <div class="room-card-body">
+              <h5 class="room-card-title">Junior Suite</h5>
+              <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:12px;">
+                Elegant suite with lounge area, king bed and garden terrace access.
+              </p>
+              <div class="room-card-amenities">
+                <span class="amenity-chip"><i class="fas fa-wifi"></i> WiFi</span>
+                <span class="amenity-chip"><i class="fas fa-spa"></i> Spa Access</span>
+                <span class="amenity-chip"><i class="fas fa-utensils"></i> Breakfast</span>
+                <span class="amenity-chip"><i class="fas fa-bath"></i> Bathtub</span>
+              </div>
+            </div>
+            <div class="room-card-footer">
+              <div class="room-price"><span class="amount">₹14,000</span><span class="per">/night</span></div>
+              <a href="room-details.html" class="btn-view">View Details</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Room 9: Penthouse -->
+        <div class="col-lg-4 col-md-6 room-card-wrapper animate-on-scroll delay-3" data-type="suite" data-price="28000">
+          <div class="room-card">
+            <div class="room-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=600&q=80" alt="Penthouse" loading="lazy"/>
+              <span class="room-card-badge" style="background:#1a1a2e;color:#c9a84c;border:1px solid #c9a84c;">Penthouse</span>
+              <div class="room-card-overlay">
+                <a href="room-details.html" class="btn-gold btn-sm">Quick View</a>
+              </div>
+            </div>
+            <div class="room-card-body">
+              <h5 class="room-card-title">Sky Penthouse</h5>
+              <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:12px;">
+                Top-floor exclusive penthouse with private rooftop terrace and stunning skyline views.
+              </p>
+              <div class="room-card-amenities">
+                <span class="amenity-chip"><i class="fas fa-city"></i> Skyline</span>
+                <span class="amenity-chip"><i class="fas fa-wine-glass-alt"></i> Bar</span>
+                <span class="amenity-chip"><i class="fas fa-user-tie"></i> Butler</span>
+                <span class="amenity-chip"><i class="fas fa-car"></i> Limousine</span>
+              </div>
+            </div>
+            <div class="room-card-footer">
+              <div class="room-price"><span class="amount">₹28,000</span><span class="per">/night</span></div>
+              <a href="room-details.html" class="btn-view">View Details</a>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end row -->
+
+      <!-- Pagination -->
+      <div class="d-flex justify-content-center mt-5 animate-on-scroll">
+        <nav aria-label="Rooms pagination">
+          <ul class="pagination custom-pagination">
+            <li class="page-item disabled"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY BOOK WITH US -->
+  <section class="section-wrapper bg-cream">
+    <div class="container">
+      <div class="row justify-content-center text-center section-title-group">
+        <div class="col-lg-6 animate-on-scroll">
+          <span class="section-label">Why Choose Us</span>
+          <h2 class="section-heading">Book Direct &amp; Get Exclusive Benefits</h2>
+          <div class="gold-divider mx-auto"></div>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-6 animate-on-scroll delay-1">
+          <div class="text-center p-4" style="background:white;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,0.07);">
+            <div style="width:64px;height:64px;background:rgba(201,168,76,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">
+              <i class="fas fa-tag" style="color:var(--accent);font-size:1.4rem;"></i>
+            </div>
+            <h6 style="font-weight:600;color:var(--primary);margin-bottom:8px;">Best Rate Guarantee</h6>
+            <p style="color:var(--text-light);font-size:0.85rem;margin:0;">Lowest price when booking directly through our website.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 animate-on-scroll delay-2">
+          <div class="text-center p-4" style="background:white;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,0.07);">
+            <div style="width:64px;height:64px;background:rgba(201,168,76,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">
+              <i class="fas fa-clock" style="color:var(--accent);font-size:1.4rem;"></i>
+            </div>
+            <h6 style="font-weight:600;color:var(--primary);margin-bottom:8px;">Free Early Check-In</h6>
+            <p style="color:var(--text-light);font-size:0.85rem;margin:0;">Subject to availability, enjoy early check-in at no extra charge.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 animate-on-scroll delay-3">
+          <div class="text-center p-4" style="background:white;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,0.07);">
+            <div style="width:64px;height:64px;background:rgba(201,168,76,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">
+              <i class="fas fa-undo-alt" style="color:var(--accent);font-size:1.4rem;"></i>
+            </div>
+            <h6 style="font-weight:600;color:var(--primary);margin-bottom:8px;">Free Cancellation</h6>
+            <p style="color:var(--text-light);font-size:0.85rem;margin:0;">Cancel up to 24 hours before arrival with full refund.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 animate-on-scroll delay-4">
+          <div class="text-center p-4" style="background:white;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,0.07);">
+            <div style="width:64px;height:64px;background:rgba(201,168,76,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">
+              <i class="fas fa-gift" style="color:var(--accent);font-size:1.4rem;"></i>
+            </div>
+            <h6 style="font-weight:600;color:var(--primary);margin-bottom:8px;">Loyalty Rewards</h6>
+            <p style="color:var(--text-light);font-size:0.85rem;margin:0;">Earn points on every stay and redeem for free nights.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--
+    JAVA/JSP: <%@ include file="fragments/footer.html" %>
+  -->
+
+  <!-- FOOTER -->
+  <footer class="footer-main">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-brand">Hotel<span>Luxe</span></div>
+          <p class="footer-desc">Experience the perfect blend of luxury and comfort. Every stay at HotelLuxe is crafted to be an unforgettable memory.</p>
+          <div class="footer-social">
+            <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-6">
+          <h6 class="footer-heading">Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="rooms.html"><i class="fas fa-chevron-right"></i> Rooms</a></li>
+            <li><a href="index.html#amenities"><i class="fas fa-chevron-right"></i> Amenities</a></li>
+            <li><a href="index.html#gallery"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+            <li><a href="index.html#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6 col-6">
+          <h6 class="footer-heading">Room Types</h6>
+          <ul class="footer-links">
+            <li><a href="rooms.html"><i class="fas fa-chevron-right"></i> Standard</a></li>
+            <li><a href="rooms.html"><i class="fas fa-chevron-right"></i> Deluxe</a></li>
+            <li><a href="rooms.html"><i class="fas fa-chevron-right"></i> Suite</a></li>
+            <li><a href="rooms.html"><i class="fas fa-chevron-right"></i> Presidential</a></li>
+            <li><a href="rooms.html"><i class="fas fa-chevron-right"></i> Family</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <h6 class="footer-heading">Contact Us</h6>
+          <div class="footer-contact-item">
+            <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div><span>Address</span><p>123 Luxury Avenue, Marine Drive, Mumbai</p></div>
+          </div>
+          <div class="footer-contact-item">
+            <div class="icon"><i class="fas fa-phone-alt"></i></div>
+            <div><span>Phone</span><p>+91 98765 43210</p></div>
+          </div>
+          <div class="footer-contact-item">
+            <div class="icon"><i class="fas fa-envelope"></i></div>
+            <div><span>Email</span><p>reservations@hotelluxe.com</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom mt-5">
       <div class="container">
-        <div class="booking-inner">
-          <div class="reveal">
-            <h2>Ready to Experience <em>Unparalleled Luxury?</em></h2>
-            <p>Reserve your suite today and let us craft an unforgettable stay just for you.</p>
-          </div>
-          <div class="booking-form reveal">
-            <h3>Check Availability</h3>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Check-In</label>
-                <input type="date">
-              </div>
-              <div class="form-group">
-                <label>Check-Out</label>
-                <input type="date">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Adults</label>
-                <select>
-                  <option>1 Adult</option>
-                  <option>2 Adults</option>
-                  <option>3 Adults</option>
-                  <option>4 Adults</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Room Type</label>
-                <select>
-                  <option>Deluxe Room</option>
-                  <option>Premium Suite</option>
-                  <option>Royal Penthouse</option>
-                </select>
-              </div>
-            </div>
-            <button class="btn-submit">Check Availability →</button>
+        <div class="row align-items-center">
+          <div class="col-md-6"><p>&copy; 2026 <a href="index.html">HotelLuxe</a>. All rights reserved.</p></div>
+          <div class="col-md-6 text-md-end">
+            <p><a href="#" style="color:rgba(255,255,255,0.4);font-size:0.82rem;margin:0 10px;">Privacy Policy</a><a href="#" style="color:rgba(255,255,255,0.4);font-size:0.82rem;margin:0 10px;">Terms of Use</a></p>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </footer>
 
-    <!-- FOOTER -->
-    <footer id="contact">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <span class="logo">Elite<span>&nbsp;Haven</span></span>
-            <p>Where luxury meets tranquility. A sanctuary of world-class hospitality, refined elegance, and
-              unforgettable
-              moments.</p>
-            <div class="footer-socials">
-              <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-              <a href="#"><i class="fa-brands fa-instagram"></i></a>
-              <a href="#"><i class="fa-brands fa-youtube"></i></a>
-              <a href="#"><i class="fa-brands fa-telegram"></i></a>
-            </div>
-          </div>
-          <div class="footer-col">
-            <h5>Quick Links</h5>
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#rooms">Rooms &amp; Suites</a></li>
-              <li><a href="#amenities">Amenities</a></li>
-              <li><a href="#gallery">Gallery</a></li>
-              <li><a href="#about">About Us</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h5>Services</h5>
-            <ul>
-              <li><a href="#">Spa &amp; Wellness</a></li>
-              <li><a href="#">Fine Dining</a></li>
-              <li><a href="#">Events &amp; Weddings</a></li>
-              <li><a href="#">Business Meetings</a></li>
-              <li><a href="#">Airport Transfer</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h5>Contact</h5>
-            <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i><span>Plot No. 27, Sector 18,
-                Noida,
-                UP</span></div>
-            <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><span>+91 98765 43210</span></div>
-            <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><span>elitehaven.hotel@gmail.com</span>
-            </div>
-            <div class="footer-contact-item"><i class="fa-solid fa-clock"></i><span>Check-in: 2PM | Check-out:
-                12PM</span>
-            </div>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>© 2025 <span>Elite Haven Hotel</span>. All rights reserved.</p>
-          <p>Privacy Policy · Terms of Service · Cookie Policy</p>
-        </div>
-      </div>
-    </footer>
-
-
-
-    <script src="script.js"></script>
-  </body>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
 </html>
