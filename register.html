@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account – HotelLuxe</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body {
+      background: #0d0d1a;
+      min-height: 100vh;
+    }
+
+    .auth-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: stretch;
+    }
+
+    /* LEFT PANEL */
+    .auth-left {
+      flex: 1;
+      background: linear-gradient(160deg, #1a1a2e 0%, #0f3460 60%, #16213e 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 50px;
+      min-height: 100vh;
+    }
+
+    .auth-left-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=900&q=70') center/cover no-repeat;
+      opacity: 0.18;
+      animation: zoomBg 14s ease-in-out infinite alternate;
+    }
+
+    @keyframes zoomBg {
+      from { transform: scale(1); }
+      to   { transform: scale(1.08); }
+    }
+
+    .auth-left-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .auth-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .auth-brand span {
+      color: #c9a84c;
+    }
+
+    /* RIGHT PANEL */
+    .auth-right {
+      width: 530px;
+      background: #fff;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 48px 48px 40px;
+      position: relative;
+      overflow-y: auto;
+    }
+
+    .auth-form-box {
+      width: 100%;
+      max-width: 420px;
+      padding-top: 10px;
+      animation: slideInRight 0.5s ease both;
+    }
+
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    .auth-form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #1a1a2e;
+      margin-bottom: 6px;
+    }
+
+    .auth-form-subtitle {
+      color: #6c757d;
+      font-size: 0.88rem;
+      margin-bottom: 28px;
+    }
+
+    .auth-form-subtitle a {
+      color: #c9a84c;
+      font-weight: 600;
+    }
+
+    /* Input groups */
+    .auth-input-group {
+      position: relative;
+      margin-bottom: 18px;
+    }
+
+    .auth-input-group label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #1a1a2e;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 7px;
+    }
+
+    .auth-input-group .input-wrap {
+      position: relative;
+    }
+
+    .auth-input-group .input-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #adb5bd;
+      font-size: 0.88rem;
+      transition: color 0.3s;
+      pointer-events: none;
+    }
+
+    .auth-input-group .input-wrap:focus-within .input-icon {
+      color: #c9a84c;
+    }
+
+    .auth-input-group .input-eye {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #adb5bd;
+      cursor: pointer;
+      font-size: 0.88rem;
+      transition: color 0.3s;
+    }
+
+    .auth-input-group .input-eye:hover {
+      color: #1a1a2e;
+    }
+
+    .auth-input-group input,
+    .auth-input-group select {
+      width: 100%;
+      padding: 12px 14px 12px 42px;
+      border: 1.5px solid #e8e8e8;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-family: 'Poppins', sans-serif;
+      color: #2c2c2c;
+      background: #fafafa;
+      transition: all 0.3s;
+      outline: none;
+      appearance: none;
+    }
+
+    .auth-input-group input:focus,
+    .auth-input-group select:focus {
+      border-color: #c9a84c;
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.1);
+    }
+
+    .auth-input-group input.is-invalid,
+    .auth-input-group select.is-invalid {
+      border-color: #e74c3c;
+      box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.08);
+    }
+
+    .auth-input-group .invalid-msg {
+      font-size: 0.74rem;
+      color: #e74c3c;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .auth-input-group .valid-tick {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #2ecc71;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    /* Password strength */
+    .pwd-strength-bar {
+      display: flex;
+      gap: 4px;
+      margin-top: 8px;
+    }
+
+    .pwd-bar-segment {
+      height: 4px;
+      flex: 1;
+      border-radius: 4px;
+      background: #e8e8e8;
+      transition: background 0.3s;
+    }
+
+    .pwd-strength-label {
+      font-size: 0.73rem;
+      margin-top: 4px;
+      color: #adb5bd;
+    }
+
+    /* Terms checkbox */
+    .auth-terms {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .auth-terms input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #c9a84c;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .auth-terms label {
+      font-size: 0.82rem;
+      color: #6c757d;
+      cursor: pointer;
+      line-height: 1.5;
+    }
+
+    .auth-terms a {
+      color: #c9a84c;
+      font-weight: 600;
+    }
+
+    /* Submit button */
+    .btn-auth-submit {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #1a1a2e, #0f3460);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      font-family: 'Poppins', sans-serif;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.35s;
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-auth-submit::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #c9a84c, #e8c96a);
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+
+    .btn-auth-submit:hover::before {
+      opacity: 1;
+    }
+
+    .btn-auth-submit:hover {
+      color: #1a1a2e;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(201, 168, 76, 0.4);
+    }
+
+    .btn-auth-submit span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-auth-submit .spinner {
+      display: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin: 0 auto;
+    }
+
+    .btn-auth-submit.loading .spinner {
+      display: inline-block;
+    }
+
+    .btn-auth-submit.loading .btn-text {
+      display: none;
+    }
+
+    /* Alert */
+    .auth-alert {
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 0.85rem;
+      margin-bottom: 20px;
+      display: none;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .auth-alert.show {
+      display: flex;
+    }
+
+    .auth-alert-error {
+      background: #fdf2f2;
+      border: 1px solid #f5c6cb;
+      color: #721c24;
+    }
+
+    .auth-alert-success {
+      background: #f0fff4;
+      border: 1px solid #b7ebc6;
+      color: #155724;
+    }
+
+    /* Membership plans */
+    .membership-options {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .membership-card {
+      flex: 1;
+      padding: 14px 10px;
+      border: 2px solid #e8e8e8;
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .membership-card input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .membership-card.selected,
+    .membership-card:hover {
+      border-color: #c9a84c;
+      background: rgba(201, 168, 76, 0.05);
+    }
+
+    .membership-card i {
+      font-size: 1.3rem;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .membership-card .plan-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #1a1a2e;
+    }
+
+    .membership-card .plan-sub {
+      font-size: 0.7rem;
+      color: #adb5bd;
+    }
+
+    .card-standard i { color: #6c757d; }
+    .card-gold i     { color: #c9a84c; }
+    .card-platinum i { color: #9b59b6; }
+
+    .membership-card.selected::after {
+      content: '\f058';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      color: #c9a84c;
+      font-size: 0.75rem;
+    }
+
+    /* Success screen */
+    .success-screen {
+      text-align: center;
+      display: none;
+      padding: 40px 0;
+      animation: fadeInUp 0.6s ease both;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .success-circle {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c9a84c, #e8c96a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 2.2rem;
+      color: #1a1a2e;
+    }
+
+    /* Admin link strip */
+    .admin-link-strip {
+      margin-top: 24px;
+      padding: 14px 18px;
+      background: #f5f5f5;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px dashed #ddd;
+    }
+
+    .admin-link-strip span {
+      font-size: 0.8rem;
+      color: #6c757d;
+    }
+
+    .admin-link-strip a {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: #1a1a2e;
+      color: #c9a84c;
+      border-radius: 6px;
+      transition: all 0.3s;
+    }
+
+    .admin-link-strip a:hover {
+      background: #c9a84c;
+      color: #1a1a2e;
+    }
+
+    @media (max-width: 991px) {
+      .auth-left  { display: none; }
+      .auth-right { width: 100%; padding: 36px 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .auth-right { padding: 28px 18px; }
+      .membership-options { flex-direction: column; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- PRELOADER -->
+  <div id="preloader"
+    style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;z-index:9999;">
+    <div style="text-align:center;">
+      <div
+        style="width:50px;height:50px;border:3px solid rgba(201,168,76,0.2);border-top-color:#c9a84c;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px;"></div>
+      <p style="color:#c9a84c;font-size:0.8rem;letter-spacing:3px;text-transform:uppercase;font-family:'Poppins',sans-serif;margin:0;">Loading...</p>
+    </div>
+    <style>@keyframes spin { to { transform: rotate(360deg); } }</style>
+  </div>
+
+  <div class="auth-wrapper">
+
+    <!-- ===== LEFT PANEL ===== -->
+    <div class="auth-left">
+      <div class="auth-left-bg"></div>
+      <div class="auth-left-content" style="animation: slideInLeft 0.6s ease both;">
+
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <a href="index.html" class="auth-brand">Hotel<span>Luxe</span></a>
+          <a href="index.html"
+            style="color:rgba(255,255,255,0.5);font-size:0.82rem;display:flex;align-items:center;gap:6px;"
+            onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">
+            <i class="fas fa-arrow-left"></i> Back to Home
+          </a>
+        </div>
+
+        <div style="margin-top: auto; padding-top: 80px;">
+          <h2 style="font-size:2.4rem;color:#fff;line-height:1.25;margin-bottom:18px;">
+            Join the World of<br><span style="color:#c9a84c;">HotelLuxe Members</span>
+          </h2>
+          <p style="color:rgba(255,255,255,0.6);font-size:0.95rem;line-height:1.8;max-width:380px;">
+            Create your free account and unlock exclusive benefits, early-bird deals and a seamless booking experience.
+          </p>
+
+          <!-- Benefits list -->
+          <div style="margin-top:36px;display:flex;flex-direction:column;gap:16px;">
+            <div style="display:flex;align-items:center;gap:14px;">
+              <div style="width:36px;height:36px;background:rgba(201,168,76,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <i class="fas fa-percent" style="color:#c9a84c;font-size:0.85rem;"></i>
+              </div>
+              <div>
+                <div style="color:#fff;font-size:0.88rem;font-weight:600;">Up to 20% member discounts</div>
+                <div style="color:rgba(255,255,255,0.45);font-size:0.78rem;">On every direct booking</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;">
+              <div style="width:36px;height:36px;background:rgba(201,168,76,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <i class="fas fa-star" style="color:#c9a84c;font-size:0.85rem;"></i>
+              </div>
+              <div>
+                <div style="color:#fff;font-size:0.88rem;font-weight:600;">Earn loyalty points</div>
+                <div style="color:rgba(255,255,255,0.45);font-size:0.78rem;">Redeem for free nights &amp; upgrades</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;">
+              <div style="width:36px;height:36px;background:rgba(201,168,76,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <i class="fas fa-clock" style="color:#c9a84c;font-size:0.85rem;"></i>
+              </div>
+              <div>
+                <div style="color:#fff;font-size:0.88rem;font-weight:600;">Priority early check-in</div>
+                <div style="color:rgba(255,255,255,0.45);font-size:0.78rem;">Subject to availability, always free</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;">
+              <div style="width:36px;height:36px;background:rgba(201,168,76,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <i class="fas fa-headset" style="color:#c9a84c;font-size:0.85rem;"></i>
+              </div>
+              <div>
+                <div style="color:#fff;font-size:0.88rem;font-weight:600;">Dedicated support line</div>
+                <div style="color:rgba(255,255,255,0.45);font-size:0.78rem;">24/7 priority member concierge</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ratings strip -->
+        <div style="display:flex;align-items:center;gap:20px;margin-top:40px;">
+          <div style="display:flex;">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&q=70"
+              style="width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid #c9a84c;margin-left:-8px;" />
+            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b647?w=60&q=70"
+              style="width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid #c9a84c;margin-left:-8px;" />
+            <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?w=60&q=70"
+              style="width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid #c9a84c;margin-left:-8px;" />
+          </div>
+          <div>
+            <div style="color:#c9a84c;font-size:0.78rem;">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <div style="color:rgba(255,255,255,0.5);font-size:0.75rem;">50,000+ happy members</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="position:relative;z-index:2;color:rgba(255,255,255,0.35);font-size:0.78rem;margin-top:40px;">&copy; 2026 HotelLuxe. All rights reserved.</div>
+    </div>
+
+    <!-- ===== RIGHT PANEL ===== -->
+    <div class="auth-right">
+      <div class="auth-form-box">
+
+        <!-- Top nav -->
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:26px;">
+          <div style="display:inline-flex;align-items:center;gap:8px;background:#f5f0e8;padding:7px 14px;border-radius:30px;">
+            <i class="fas fa-user-plus" style="color:#c9a84c;font-size:0.75rem;"></i>
+            <span style="font-size:0.75rem;font-weight:600;color:#1a1a2e;text-transform:uppercase;letter-spacing:0.5px;">Free Registration</span>
+          </div>
+          <a href="index.html" class="d-lg-none"
+            style="color:#c9a84c;font-size:0.82rem;font-weight:600;text-decoration:none;">
+            <i class="fas fa-arrow-left me-1"></i>Back
+          </a>
+        </div>
+
+        <!-- Form -->
+        <div id="registerFormSection">
+          <h2 class="auth-form-title">Create Account</h2>
+          <p class="auth-form-subtitle">
+            Already have an account? <a href="login.html">Sign in here</a>
+          </p>
+
+          <!-- Alert -->
+          <div class="auth-alert auth-alert-error" id="regAlert">
+            <i class="fas fa-exclamation-circle mt-1"></i>
+            <span id="regAlertMsg">Please fix the errors above.</span>
+          </div>
+
+          <form id="registerForm" novalidate>
+
+            <!-- Row: First + Last Name -->
+            <div class="row g-3">
+              <div class="col-6">
+                <div class="auth-input-group">
+                  <label for="regFirstName">First Name</label>
+                  <div class="input-wrap">
+                    <i class="fas fa-user input-icon"></i>
+                    <input type="text" id="regFirstName" placeholder="Arjun" autocomplete="given-name" />
+                    <i class="fas fa-check valid-tick" id="tick-fname"></i>
+                  </div>
+                  <div class="invalid-msg">Required (min 2 chars).</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="auth-input-group">
+                  <label for="regLastName">Last Name</label>
+                  <div class="input-wrap">
+                    <i class="fas fa-user input-icon"></i>
+                    <input type="text" id="regLastName" placeholder="Sharma" autocomplete="family-name" />
+                    <i class="fas fa-check valid-tick" id="tick-lname"></i>
+                  </div>
+                  <div class="invalid-msg">Required (min 2 chars).</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="auth-input-group">
+              <label for="regEmail">Email Address</label>
+              <div class="input-wrap">
+                <i class="fas fa-envelope input-icon"></i>
+                <input type="email" id="regEmail" placeholder="arjun@example.com" autocomplete="email" />
+                <i class="fas fa-check valid-tick" id="tick-email"></i>
+              </div>
+              <div class="invalid-msg">Please enter a valid email.</div>
+            </div>
+
+            <!-- Phone -->
+            <div class="auth-input-group">
+              <label for="regPhone">Phone Number</label>
+              <div class="input-wrap">
+                <i class="fas fa-phone input-icon"></i>
+                <input type="tel" id="regPhone" placeholder="+91 98765 43210" autocomplete="tel" />
+                <i class="fas fa-check valid-tick" id="tick-phone"></i>
+              </div>
+              <div class="invalid-msg">Enter a valid 10-digit number.</div>
+            </div>
+
+            <!-- Password -->
+            <div class="auth-input-group">
+              <label for="regPassword">Password</label>
+              <div class="input-wrap">
+                <i class="fas fa-lock input-icon"></i>
+                <input type="password" id="regPassword" placeholder="Create a strong password" autocomplete="new-password" />
+                <i class="fas fa-eye input-eye" id="toggleRegPwd"></i>
+              </div>
+              <div class="pwd-strength-bar" id="pwdStrengthBar">
+                <div class="pwd-bar-segment" id="bar1"></div>
+                <div class="pwd-bar-segment" id="bar2"></div>
+                <div class="pwd-bar-segment" id="bar3"></div>
+                <div class="pwd-bar-segment" id="bar4"></div>
+              </div>
+              <div class="pwd-strength-label" id="pwdStrengthLabel">Minimum 8 characters required</div>
+              <div class="invalid-msg">Password must be at least 8 characters.</div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="auth-input-group">
+              <label for="regConfirmPwd">Confirm Password</label>
+              <div class="input-wrap">
+                <i class="fas fa-lock input-icon"></i>
+                <input type="password" id="regConfirmPwd" placeholder="Repeat your password" autocomplete="new-password" />
+                <i class="fas fa-eye input-eye" id="toggleRegConfirm"></i>
+                <i class="fas fa-check valid-tick" id="tick-confirm"></i>
+              </div>
+              <div class="invalid-msg">Passwords do not match.</div>
+            </div>
+
+            <!-- Membership Selection -->
+            <div style="margin-bottom:18px;">
+              <div style="font-size:0.75rem;font-weight:600;color:#1a1a2e;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">
+                Membership Plan
+              </div>
+              <div class="membership-options">
+                <label class="membership-card card-standard selected" for="planStandard">
+                  <input type="radio" name="plan" id="planStandard" value="standard" checked />
+                  <i class="fas fa-medal"></i>
+                  <div class="plan-name">Standard</div>
+                  <div class="plan-sub">Free</div>
+                </label>
+                <label class="membership-card card-gold" for="planGold">
+                  <input type="radio" name="plan" id="planGold" value="gold" />
+                  <i class="fas fa-crown"></i>
+                  <div class="plan-name">Gold</div>
+                  <div class="plan-sub">₹999/yr</div>
+                </label>
+                <label class="membership-card card-platinum" for="planPlatinum">
+                  <input type="radio" name="plan" id="planPlatinum" value="platinum" />
+                  <i class="fas fa-gem"></i>
+                  <div class="plan-name">Platinum</div>
+                  <div class="plan-sub">₹2,499/yr</div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Terms -->
+            <div class="auth-terms">
+              <input type="checkbox" id="agreeTerms" />
+              <label for="agreeTerms">
+                I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+                I consent to receiving booking confirmations and promotional offers.
+              </label>
+            </div>
+            <div id="termsError"
+              style="font-size:0.74rem;color:#e74c3c;margin-top:-14px;margin-bottom:16px;display:none;">
+              You must accept the terms to continue.
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn-auth-submit" id="regBtn">
+              <div class="spinner"></div>
+              <span class="btn-text"><i class="fas fa-user-plus me-2"></i>Create My Account</span>
+            </button>
+          </form>
+
+          <!-- Bottom links -->
+          <div style="text-align:center;margin-top:22px;padding-top:18px;border-top:1px solid #f0f0f0;">
+            <span style="font-size:0.85rem;color:#adb5bd;">Already a member? </span>
+            <a href="login.html" style="font-size:0.85rem;font-weight:700;color:#1a1a2e;">Sign In →</a>
+          </div>
+
+          <!-- Admin link -->
+          <div class="admin-link-strip">
+            <span><i class="fas fa-shield-halved me-1" style="color:#c9a84c;"></i> Are you an administrator?</span>
+            <a href="admin.html"><i class="fas fa-lock"></i> Admin Dashboard</a>
+          </div>
+
+        </div>
+
+        <!-- SUCCESS SCREEN -->
+        <div class="success-screen" id="successScreen">
+          <div class="success-circle">
+            <i class="fas fa-check"></i>
+          </div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:#1a1a2e;margin-bottom:12px;">Account Created!</h3>
+          <p style="color:#6c757d;font-size:0.92rem;margin-bottom:28px;">
+            Welcome to HotelLuxe! Your account has been successfully created.<br>
+            Redirecting you to your dashboard…
+          </p>
+          <div style="background:#f5f0e8;border-radius:12px;padding:20px;margin-bottom:28px;text-align:left;">
+            <div style="font-size:0.78rem;font-weight:600;color:#1a1a2e;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">Your Account Summary</div>
+            <div id="successSummary" style="font-size:0.85rem;color:#6c757d;line-height:2;"></div>
+          </div>
+          <!-- Countdown redirect bar -->
+          <div style="background:#e8e8e8;border-radius:6px;overflow:hidden;margin-bottom:20px;height:6px;">
+            <div id="redirectBar" style="height:100%;background:linear-gradient(90deg,#c9a84c,#e8c96a);width:0%;transition:width 3s linear;"></div>
+          </div>
+          <p style="font-size:0.8rem;color:#adb5bd;margin-bottom:20px;">Redirecting in <span id="countdown">3</span> seconds…</p>
+          <a href="user.html"
+            style="display:block;background:linear-gradient(135deg,#1a1a2e,#0f3460);color:#fff;padding:14px;border-radius:10px;font-weight:700;font-size:0.95rem;text-align:center;text-decoration:none;transition:all 0.3s;"
+            onmouseover="this.style.background='linear-gradient(135deg,#c9a84c,#e8c96a)';this.style.color='#1a1a2e';"
+            onmouseout="this.style.background='linear-gradient(135deg,#1a1a2e,#0f3460)';this.style.color='#fff';">
+            <i class="fas fa-gauge-high me-2"></i>Go to My Dashboard
+          </a>
+          <a href="index.html"
+            style="display:block;text-align:center;margin-top:14px;color:#adb5bd;font-size:0.85rem;text-decoration:none;">← Back to Homepage</a>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- end auth-wrapper -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+$(function () {
+
+  /* Preloader */
+  setTimeout(function () { $('#preloader').fadeOut(500); }, 1500);
+  $(window).on('load', function () { $('#preloader').fadeOut(500); });
+
+  /* Toggle password visibility */
+  $('#toggleRegPwd').on('click', function () {
+    var $i = $('#regPassword');
+    $i.attr('type', $i.attr('type') === 'password' ? 'text' : 'password');
+    $(this).toggleClass('fa-eye fa-eye-slash');
+  });
+
+  $('#toggleRegConfirm').on('click', function () {
+    var $i = $('#regConfirmPwd');
+    $i.attr('type', $i.attr('type') === 'password' ? 'text' : 'password');
+    $(this).toggleClass('fa-eye fa-eye-slash');
+  });
+
+  /* Password strength */
+  $('#regPassword').on('input', function () {
+    var val = $(this).val();
+    var strength = 0;
+
+    if (val.length >= 8) strength++;
+    if (/[A-Z]/.test(val)) strength++;
+    if (/[0-9]/.test(val)) strength++;
+    if (/[^A-Za-z0-9]/.test(val)) strength++;
+
+    var colors = ['#e74c3c', '#e67e22', '#f1c40f', '#2ecc71'];
+    var labels = ['Weak', 'Fair', 'Good', 'Strong'];
+
+    for (var i = 1; i <= 4; i++) {
+      $('#bar' + i).css('background', i <= strength ? colors[strength - 1] : '#e8e8e8');
+    }
+
+    $('#pwdStrengthLabel')
+      .text(labels[strength - 1] || 'Too short')
+      .css('color', colors[strength - 1] || '#e74c3c');
+  });
+
+  /* Membership select */
+  $('input[name="plan"]').on('change', function () {
+    $('.membership-card').removeClass('selected');
+    $(this).closest('.membership-card').addClass('selected');
+  });
+
+  /* Validation helper */
+  function validateField($input, condition, tickId) {
+    if (condition) {
+      $input.removeClass('is-invalid');
+      $('#' + tickId).show();
+    } else {
+      $('#' + tickId).hide();
+    }
+  }
+
+  $('#regFirstName').on('input', function () {
+    validateField($(this), $(this).val().trim().length >= 2, 'tick-fname');
+  });
+
+  $('#regLastName').on('input', function () {
+    validateField($(this), $(this).val().trim().length >= 2, 'tick-lname');
+  });
+
+  $('#regEmail').on('input', function () {
+    validateField($(this), /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($(this).val()), 'tick-email');
+  });
+
+  $('#regPhone').on('input', function () {
+    validateField($(this), /^[\d\s\+\-]{10,14}$/.test($(this).val()), 'tick-phone');
+  });
+
+  $('#regConfirmPwd').on('input', function () {
+    validateField($(this),
+      $(this).val() === $('#regPassword').val() && $(this).val().length > 0,
+      'tick-confirm'
+    );
+  });
+
+  /* Submit */
+  $('#registerForm').on('submit', function (e) {
+    e.preventDefault();
+
+    var firstName = $('#regFirstName').val().trim();
+    var lastName  = $('#regLastName').val().trim();
+    var email     = $('#regEmail').val().trim();
+    var phone     = $('#regPhone').val().trim();
+    var password  = $('#regPassword').val();
+    var confirm   = $('#regConfirmPwd').val();
+    var terms     = $('#agreeTerms').prop('checked');
+    var plan      = $('input[name="plan"]:checked').val();
+
+    var valid = true;
+
+    if (firstName.length < 2) { $('#regFirstName').addClass('is-invalid'); valid = false; }
+    if (lastName.length < 2)  { $('#regLastName').addClass('is-invalid'); valid = false; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { $('#regEmail').addClass('is-invalid'); valid = false; }
+    if (password.length < 8) { $('#regPassword').addClass('is-invalid'); valid = false; }
+    if (confirm !== password) { $('#regConfirmPwd').addClass('is-invalid'); valid = false; }
+    if (!terms) { $('#termsError').show(); valid = false; }
+
+    if (!valid) return;
+
+    var $btn = $('#regBtn');
+    $btn.prop('disabled', true);
+
+    /* Store NON-SENSITIVE data only */
+    var userData = {
+      fullName: firstName + ' ' + lastName,
+      email: email,
+      phone: phone,
+      plan: plan,
+      isLoggedIn: true
+    };
+
+    localStorage.setItem('hotelluxe_user', JSON.stringify(userData));
+
+    /* Send password securely via POST */
+    fetch('http://localhost:9090/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        phone: phone,
+        password: password
+      })
+    })
+    .then(res => res.text())
+    .then(data => {
+      console.log(data);
+      showSuccess(firstName, lastName, email, plan);
+    })
+    .catch(() => {
+      showSuccess(firstName, lastName, email, plan);
+    });
+  });
+
+  function showSuccess(firstName, lastName, email, plan) {
+    $('#registerFormSection').fadeOut(400, function () {
+      $('#successScreen').fadeIn(400);
+
+      setTimeout(function () {
+        window.location.href = 'user.html';
+      }, 3000);
+    });
+  }
+
+});
+</script>
+</body>
+</html>

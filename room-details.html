@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Deluxe King Room – HotelLuxe</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+  <!-- PRELOADER -->
+  <div id="preloader" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;z-index:9999;">
+    <div style="text-align:center;">
+      <div style="width:50px;height:50px;border:3px solid rgba(201,168,76,0.2);border-top-color:#c9a84c;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px;"></div>
+      <p style="color:#c9a84c;font-size:0.8rem;letter-spacing:3px;text-transform:uppercase;font-family:'Poppins',sans-serif;margin:0;">Loading...</p>
+    </div>
+    <style>@keyframes spin{to{transform:rotate(360deg);}}</style>
+  </div>
+
+  <!--
+    JAVA/JSP: <%@ include file="fragments/header.html" %>
+  -->
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-custom scrolled">
+    <div class="container">
+      <a class="navbar-brand navbar-brand-text" href="index.html">Hotel<span>Luxe</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-1">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="rooms.html">Rooms</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#amenities">Amenities</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#gallery">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+          <li class="nav-item ms-lg-3"><a class="nav-link" href="login.html">Login</a></li>
+          <li class="nav-item"><a class="nav-link btn-nav-book" href="rooms.html">Book Now</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero" style="padding:130px 0 50px;">
+    <div class="container page-hero-content">
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb breadcrumb-custom">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="rooms.html">Rooms</a></li>
+          <li class="breadcrumb-item active">Deluxe King Room</li>
+        </ol>
+      </nav>
+      <h1 class="page-title animate-on-scroll">Deluxe King Room</h1>
+      <div class="d-flex align-items-center gap-3 mt-2 animate-on-scroll delay-2">
+        <div style="color:var(--accent);">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <span style="color:rgba(255,255,255,0.7);font-size:0.9rem;">4.9 (128 reviews)</span>
+        <span style="color:rgba(255,255,255,0.4);">|</span>
+        <span style="color:rgba(255,255,255,0.7);font-size:0.9rem;"><i class="fas fa-map-marker-alt me-1" style="color:var(--accent);"></i>Floor 12, City View Wing</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <section class="section-wrapper" style="padding-top:40px;">
+    <div class="container">
+      <div class="row g-4">
+
+        <!-- LEFT: Gallery + Details -->
+        <div class="col-lg-8">
+
+          <!-- Image Gallery -->
+          <div class="animate-on-scroll">
+            <div class="detail-gallery-main mb-2" id="mainGallery">
+              <img
+                src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=900&q=85"
+                alt="Deluxe King Room – Main View"
+                id="mainGalleryImg"/>
+            </div>
+            <div class="detail-thumb-list">
+              <div class="detail-thumb active">
+                <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=200&q=70" alt="View 1"/>
+              </div>
+              <div class="detail-thumb">
+                <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=200&q=70" alt="View 2"/>
+              </div>
+              <div class="detail-thumb">
+                <img src="https://images.unsplash.com/photo-1552566626-52f8b828329f?w=200&q=70" alt="View 3"/>
+              </div>
+              <div class="detail-thumb">
+                <img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=200&q=70" alt="View 4"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Panel -->
+          <div class="mt-4 animate-on-scroll delay-1">
+            <ul class="nav detail-tabs" id="roomDetailTabs">
+              <li class="nav-item">
+                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tabOverview">Overview</button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabAmenities">Amenities</button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabPolicies">Policies</button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabReviews">Reviews</button>
+              </li>
+            </ul>
+
+            <div class="tab-content pt-4">
+
+              <!-- Overview Tab -->
+              <div class="tab-pane fade show active" id="tabOverview">
+                <h4 style="font-family:'Playfair Display',serif;color:var(--primary);margin-bottom:16px;">About This Room</h4>
+                <p style="color:var(--text-light);line-height:1.9;margin-bottom:16px;">
+                  Our Deluxe King Room is a sanctuary of comfort and sophistication. Spanning 45 sq metres on the 12th floor,
+                  this beautifully appointed room features a plush king-sized bed dressed in 600-thread-count Egyptian cotton,
+                  a private balcony with breathtaking city views, and a marble ensuite bathroom with a deep soaking tub.
+                </p>
+                <p style="color:var(--text-light);line-height:1.9;margin-bottom:24px;">
+                  Every detail has been carefully curated — from the handcrafted teak furniture to the smart home controls,
+                  Nespresso machine, and custom Aromatherapy Associates bath amenities. Perfect for business travellers and
+                  couples seeking a luxurious urban retreat.
+                </p>
+
+                <!-- Room Highlights -->
+                <h5 style="font-family:'Poppins',sans-serif;font-weight:600;color:var(--primary);margin-bottom:16px;">
+                  Room Highlights
+                </h5>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <div style="display:flex;gap:12px;align-items:flex-start;padding:14px;background:var(--cream);border-radius:10px;">
+                      <i class="fas fa-expand-arrows-alt" style="color:var(--accent);margin-top:3px;"></i>
+                      <div>
+                        <div style="font-weight:600;color:var(--primary);font-size:0.9rem;">Room Size</div>
+                        <div style="color:var(--text-light);font-size:0.83rem;">45 sq metres with private balcony</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div style="display:flex;gap:12px;align-items:flex-start;padding:14px;background:var(--cream);border-radius:10px;">
+                      <i class="fas fa-bed" style="color:var(--accent);margin-top:3px;"></i>
+                      <div>
+                        <div style="font-weight:600;color:var(--primary);font-size:0.9rem;">Bed Type</div>
+                        <div style="color:var(--text-light);font-size:0.83rem;">King-size (180 × 200 cm)</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div style="display:flex;gap:12px;align-items:flex-start;padding:14px;background:var(--cream);border-radius:10px;">
+                      <i class="fas fa-eye" style="color:var(--accent);margin-top:3px;"></i>
+                      <div>
+                        <div style="font-weight:600;color:var(--primary);font-size:0.9rem;">View</div>
+                        <div style="color:var(--text-light);font-size:0.83rem;">City skyline &amp; partial sea view</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div style="display:flex;gap:12px;align-items:flex-start;padding:14px;background:var(--cream);border-radius:10px;">
+                      <i class="fas fa-users" style="color:var(--accent);margin-top:3px;"></i>
+                      <div>
+                        <div style="font-weight:600;color:var(--primary);font-size:0.9rem;">Max Occupancy</div>
+                        <div style="color:var(--text-light);font-size:0.83rem;">2 Adults + 1 Child (extra bed on request)</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Amenities Tab -->
+              <div class="tab-pane fade" id="tabAmenities">
+                <div class="row g-0">
+                  <div class="col-md-6">
+                    <h5 style="font-family:'Poppins',sans-serif;font-weight:600;color:var(--primary);margin-bottom:16px;">
+                      <i class="fas fa-bed me-2" style="color:var(--accent);"></i>Room Amenities
+                    </h5>
+                    <div class="detail-amenity-item"><i class="fas fa-wifi"></i> High-Speed WiFi (1 Gbps)</div>
+                    <div class="detail-amenity-item"><i class="fas fa-tv"></i> 65" 4K Smart TV (Netflix, Prime)</div>
+                    <div class="detail-amenity-item"><i class="fas fa-snowflake"></i> Climate Control (AC/Heat)</div>
+                    <div class="detail-amenity-item"><i class="fas fa-wine-glass"></i> Mini Bar &amp; Nespresso Machine</div>
+                    <div class="detail-amenity-item"><i class="fas fa-safe"></i> In-Room Electronic Safe</div>
+                    <div class="detail-amenity-item"><i class="fas fa-briefcase"></i> Ergonomic Work Desk &amp; Chair</div>
+                    <div class="detail-amenity-item"><i class="fas fa-door-closed"></i> Private Balcony</div>
+                    <div class="detail-amenity-item"><i class="fas fa-phone"></i> Direct-Dial Telephone</div>
+                  </div>
+                  <div class="col-md-6 ps-md-4 mt-4 mt-md-0">
+                    <h5 style="font-family:'Poppins',sans-serif;font-weight:600;color:var(--primary);margin-bottom:16px;">
+                      <i class="fas fa-bath me-2" style="color:var(--accent);"></i>Bathroom
+                    </h5>
+                    <div class="detail-amenity-item"><i class="fas fa-bath"></i> Deep Soaking Marble Bathtub</div>
+                    <div class="detail-amenity-item"><i class="fas fa-shower"></i> Separate Rainforest Shower</div>
+                    <div class="detail-amenity-item"><i class="fas fa-pump-soap"></i> Aromatherapy Associates Toiletries</div>
+                    <div class="detail-amenity-item"><i class="fas fa-fan"></i> Heated Towel Rail</div>
+                    <div class="detail-amenity-item"><i class="fas fa-tint"></i> Double Vanity Sink</div>
+                    <div class="detail-amenity-item"><i class="fas fa-hot-tub"></i> Bathrobes &amp; Slippers</div>
+                    <div class="detail-amenity-item"><i class="fas fa-hair-dryer"></i> Professional Hair Dryer</div>
+                    <div class="detail-amenity-item"><i class="fas fa-mirror"></i> Magnifying Makeup Mirror</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Policies Tab -->
+              <div class="tab-pane fade" id="tabPolicies">
+                <div class="row g-4">
+                  <div class="col-md-6">
+                    <div style="background:var(--cream);border-radius:12px;padding:24px;">
+                      <h6 style="color:var(--primary);font-weight:600;margin-bottom:14px;"><i class="fas fa-calendar-check me-2" style="color:var(--accent);"></i>Check-In / Check-Out</h6>
+                      <p style="font-size:0.88rem;color:var(--text-light);margin-bottom:8px;"><strong style="color:var(--primary);">Check-In:</strong> 3:00 PM</p>
+                      <p style="font-size:0.88rem;color:var(--text-light);margin-bottom:8px;"><strong style="color:var(--primary);">Check-Out:</strong> 12:00 PM (Noon)</p>
+                      <p style="font-size:0.88rem;color:var(--text-light);margin:0;">Early check-in / late checkout subject to availability (complimentary for direct bookings).</p>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div style="background:var(--cream);border-radius:12px;padding:24px;">
+                      <h6 style="color:var(--primary);font-weight:600;margin-bottom:14px;"><i class="fas fa-undo-alt me-2" style="color:var(--accent);"></i>Cancellation Policy</h6>
+                      <p style="font-size:0.88rem;color:var(--text-light);margin-bottom:8px;"><strong style="color:#2ecc71;">Free Cancellation</strong> up to 24 hours before arrival.</p>
+                      <p style="font-size:0.88rem;color:var(--text-light);margin:0;">Cancellations within 24 hours or no-shows will incur a charge of 1 night's room rate.</p>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div style="background:var(--cream);border-radius:12px;padding:24px;">
+                      <h6 style="color:var(--primary);font-weight:600;margin-bottom:14px;"><i class="fas fa-child me-2" style="color:var(--accent);"></i>Children &amp; Extra Beds</h6>
+                      <p style="font-size:0.88rem;color:var(--text-light);margin-bottom:8px;">Children under 12 stay free using existing bedding.</p>
+                      <p style="font-size:0.88rem;color:var(--text-light);margin:0;">Extra rollaway bed: ₹1,500/night. Crib available at no charge.</p>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div style="background:var(--cream);border-radius:12px;padding:24px;">
+                      <h6 style="color:var(--primary);font-weight:600;margin-bottom:14px;"><i class="fas fa-ban me-2" style="color:var(--accent);"></i>House Rules</h6>
+                      <p style="font-size:0.88rem;color:var(--text-light);margin-bottom:8px;"><i class="fas fa-smoking-ban me-1" style="color:#e74c3c;"></i> Strictly non-smoking room.</p>
+                      <p style="font-size:0.88rem;color:var(--text-light);margin-bottom:8px;"><i class="fas fa-paw me-1" style="color:#e74c3c;"></i> Pets not permitted.</p>
+                      <p style="font-size:0.88rem;color:var(--text-light);margin:0;"><i class="fas fa-music me-1" style="color:#e74c3c;"></i> Quiet hours after 11 PM.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Reviews Tab -->
+              <div class="tab-pane fade" id="tabReviews">
+                <!-- Rating Overview -->
+                <div style="background:var(--cream);border-radius:16px;padding:28px;margin-bottom:28px;display:flex;gap:40px;align-items:center;flex-wrap:wrap;">
+                  <div style="text-align:center;">
+                    <div style="font-family:'Playfair Display',serif;font-size:4rem;color:var(--primary);line-height:1;font-weight:700;">4.9</div>
+                    <div style="color:var(--accent);font-size:1.2rem;margin:6px 0;">
+                      <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <div style="color:var(--text-light);font-size:0.82rem;">128 reviews</div>
+                  </div>
+                  <div style="flex:1;min-width:200px;">
+                    <div class="d-flex align-items-center gap-3 mb-2">
+                      <span style="font-size:0.8rem;color:var(--text-light);width:90px;">Cleanliness</span>
+                      <div style="flex:1;background:#e8e8e8;border-radius:4px;height:6px;">
+                        <div style="width:96%;background:var(--accent);height:6px;border-radius:4px;"></div>
+                      </div>
+                      <span style="font-size:0.8rem;color:var(--primary);font-weight:600;">4.8</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-3 mb-2">
+                      <span style="font-size:0.8rem;color:var(--text-light);width:90px;">Comfort</span>
+                      <div style="flex:1;background:#e8e8e8;border-radius:4px;height:6px;">
+                        <div style="width:98%;background:var(--accent);height:6px;border-radius:4px;"></div>
+                      </div>
+                      <span style="font-size:0.8rem;color:var(--primary);font-weight:600;">4.9</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-3 mb-2">
+                      <span style="font-size:0.8rem;color:var(--text-light);width:90px;">Service</span>
+                      <div style="flex:1;background:#e8e8e8;border-radius:4px;height:6px;">
+                        <div style="width:100%;background:var(--accent);height:6px;border-radius:4px;"></div>
+                      </div>
+                      <span style="font-size:0.8rem;color:var(--primary);font-weight:600;">5.0</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                      <span style="font-size:0.8rem;color:var(--text-light);width:90px;">Value</span>
+                      <div style="flex:1;background:#e8e8e8;border-radius:4px;height:6px;">
+                        <div style="width:92%;background:var(--accent);height:6px;border-radius:4px;"></div>
+                      </div>
+                      <span style="font-size:0.8rem;color:var(--primary);font-weight:600;">4.6</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Individual Reviews -->
+                <div class="row g-4">
+                  <div class="col-md-6">
+                    <div class="testimonial-card">
+                      <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                      <div class="testimonial-quote">"</div>
+                      <p class="testimonial-text">The room was absolutely stunning. The balcony view at night is something I'll never forget. Staff were so warm and attentive throughout our 3-night stay.</p>
+                      <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Reviewer"/>
+                        <div>
+                          <div class="testimonial-author-name">Vikram Patel</div>
+                          <div class="testimonial-author-role">Stayed March 2026</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="testimonial-card">
+                      <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                      <div class="testimonial-quote">"</div>
+                      <p class="testimonial-text">The bathtub was incredible — filled with rose petals on arrival for our anniversary! The Nespresso machine and mini bar were stocked perfectly. Pure luxury!</p>
+                      <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b647?w=100&q=80" alt="Reviewer"/>
+                        <div>
+                          <div class="testimonial-author-name">Ananya Singh</div>
+                          <div class="testimonial-author-role">Stayed February 2026</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Booking Card -->
+        <div class="col-lg-4 animate-on-scroll delay-2">
+          <div class="detail-info-card">
+
+            <!-- Price Badge -->
+            <div class="detail-price-badge">
+              <div>
+                <div style="color:rgba(26,26,46,0.6);font-size:0.78rem;text-transform:uppercase;letter-spacing:1px;font-weight:600;">Starting from</div>
+                <div class="price-main">₹8,500</div>
+                <div class="price-sub">per night · includes taxes</div>
+              </div>
+              <div class="detail-availability">
+                <div class="dot"></div>Available
+              </div>
+            </div>
+
+            <!-- Meta Grid -->
+            <div class="detail-meta-grid">
+              <div class="detail-meta-item">
+                <div class="meta-label">Room Size</div>
+                <div class="meta-value"><i class="fas fa-expand-arrows-alt"></i>45 sq m</div>
+              </div>
+              <div class="detail-meta-item">
+                <div class="meta-label">Bed Type</div>
+                <div class="meta-value"><i class="fas fa-bed"></i>King Size</div>
+              </div>
+              <div class="detail-meta-item">
+                <div class="meta-label">Max Guests</div>
+                <div class="meta-value"><i class="fas fa-users"></i>2 Adults</div>
+              </div>
+              <div class="detail-meta-item">
+                <div class="meta-label">Floor</div>
+                <div class="meta-value"><i class="fas fa-building"></i>12th Floor</div>
+              </div>
+            </div>
+
+            <!-- Booking Form -->
+            <form>
+              <div class="mb-3">
+                <label style="font-size:0.78rem;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px;">
+                  <i class="fas fa-calendar-check me-1" style="color:var(--accent);"></i>Check-In
+                </label>
+                <input type="date" class="form-control" id="checkIn" style="border:1.5px solid #e8e8e8;border-radius:8px;padding:10px 14px;font-size:0.88rem;">
+              </div>
+              <div class="mb-3">
+                <label style="font-size:0.78rem;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px;">
+                  <i class="fas fa-calendar-times me-1" style="color:var(--accent);"></i>Check-Out
+                </label>
+                <input type="date" class="form-control" id="checkOut" style="border:1.5px solid #e8e8e8;border-radius:8px;padding:10px 14px;font-size:0.88rem;">
+              </div>
+              <div class="mb-4">
+                <label style="font-size:0.78rem;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px;">
+                  <i class="fas fa-users me-1" style="color:var(--accent);"></i>Guests
+                </label>
+                <select class="form-select" style="border:1.5px solid #e8e8e8;border-radius:8px;padding:10px 14px;font-size:0.88rem;">
+                  <option>1 Adult</option>
+                  <option selected>2 Adults</option>
+                  <option>2 Adults + 1 Child</option>
+                </select>
+              </div>
+
+              <!-- Price Breakdown -->
+              <div style="background:var(--cream);border-radius:10px;padding:18px;margin-bottom:20px;">
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+                  <span style="font-size:0.85rem;color:var(--text-light);">₹8,500 × 3 nights</span>
+                  <span style="font-size:0.85rem;font-weight:600;color:var(--primary);">₹25,500</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+                  <span style="font-size:0.85rem;color:var(--text-light);">Taxes &amp; fees (18%)</span>
+                  <span style="font-size:0.85rem;font-weight:600;color:var(--primary);">₹4,590</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding-top:10px;border-top:1px solid rgba(0,0,0,0.08);">
+                  <span style="font-size:0.92rem;font-weight:700;color:var(--primary);">Total</span>
+                  <span style="font-size:1rem;font-weight:700;color:var(--accent);">₹30,090</span>
+                </div>
+              </div>
+
+              <button type="button" class="btn-book-now">
+                <i class="fas fa-calendar-check me-2"></i>Book Now
+              </button>
+              <button type="button" class="btn-wishlist">
+                <i class="far fa-heart"></i><span> Add to Wishlist</span>
+              </button>
+            </form>
+
+            <!-- Trust badges -->
+            <div style="display:flex;gap:16px;margin-top:20px;padding-top:16px;border-top:1px solid rgba(0,0,0,0.06);">
+              <div style="text-align:center;flex:1;">
+                <i class="fas fa-shield-alt" style="color:var(--accent);font-size:1.1rem;"></i>
+                <div style="font-size:0.7rem;color:var(--text-light);margin-top:4px;">Secure<br>Booking</div>
+              </div>
+              <div style="text-align:center;flex:1;">
+                <i class="fas fa-undo-alt" style="color:var(--accent);font-size:1.1rem;"></i>
+                <div style="font-size:0.7rem;color:var(--text-light);margin-top:4px;">Free<br>Cancellation</div>
+              </div>
+              <div style="text-align:center;flex:1;">
+                <i class="fas fa-headset" style="color:var(--accent);font-size:1.1rem;"></i>
+                <div style="font-size:0.7rem;color:var(--text-light);margin-top:4px;">24/7<br>Support</div>
+              </div>
+              <div style="text-align:center;flex:1;">
+                <i class="fas fa-tag" style="color:var(--accent);font-size:1.1rem;"></i>
+                <div style="font-size:0.7rem;color:var(--text-light);margin-top:4px;">Best Rate<br>Guarantee</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SIMILAR ROOMS -->
+  <section class="section-wrapper bg-cream">
+    <div class="container">
+      <div class="row section-title-group justify-content-between align-items-end">
+        <div class="col-auto animate-on-scroll">
+          <span class="section-label">You Might Also Like</span>
+          <h2 class="section-heading">Similar Rooms</h2>
+          <div class="gold-divider"></div>
+        </div>
+        <div class="col-auto animate-on-scroll delay-2">
+          <a href="rooms.html" class="btn-gold">View All Rooms <i class="fas fa-arrow-right ms-2"></i></a>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6 animate-on-scroll delay-1">
+          <div class="room-card">
+            <div class="room-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600&q=80" alt="Executive Suite" loading="lazy"/>
+              <span class="room-card-badge" style="background:#e74c3c;color:#fff;">Upgrade</span>
+            </div>
+            <div class="room-card-body">
+              <h5 class="room-card-title">Executive Suite</h5>
+              <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:12px;">Lavish suite with separate living area, sea view and butler service.</p>
+              <div class="room-card-amenities">
+                <span class="amenity-chip"><i class="fas fa-wifi"></i> WiFi</span>
+                <span class="amenity-chip"><i class="fas fa-concierge-bell"></i> Butler</span>
+                <span class="amenity-chip"><i class="fas fa-spa"></i> Spa</span>
+              </div>
+            </div>
+            <div class="room-card-footer">
+              <div class="room-price"><span class="amount">₹18,000</span><span class="per">/night</span></div>
+              <a href="room-details.html" class="btn-view">View Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 animate-on-scroll delay-2">
+          <div class="room-card">
+            <div class="room-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1586105251261-72a756497a11?w=600&q=80" alt="Deluxe Double" loading="lazy"/>
+              <span class="room-card-badge">Deluxe</span>
+            </div>
+            <div class="room-card-body">
+              <h5 class="room-card-title">Deluxe Double Room</h5>
+              <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:12px;">Romantic ambiance with jacuzzi and premium linens for couples.</p>
+              <div class="room-card-amenities">
+                <span class="amenity-chip"><i class="fas fa-wifi"></i> WiFi</span>
+                <span class="amenity-chip"><i class="fas fa-hot-tub"></i> Jacuzzi</span>
+                <span class="amenity-chip"><i class="fas fa-wine-glass"></i> Mini Bar</span>
+              </div>
+            </div>
+            <div class="room-card-footer">
+              <div class="room-price"><span class="amount">₹9,500</span><span class="per">/night</span></div>
+              <a href="room-details.html" class="btn-view">View Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 animate-on-scroll delay-3">
+          <div class="room-card">
+            <div class="room-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1591088398332-8596b433f5ac?w=600&q=80" alt="Family Room" loading="lazy"/>
+              <span class="room-card-badge" style="background:#2ecc71;color:#fff;">Family</span>
+            </div>
+            <div class="room-card-body">
+              <h5 class="room-card-title">Family Comfort Room</h5>
+              <p style="color:var(--text-light);font-size:0.85rem;margin-bottom:12px;">Two queen beds with kids' corner, perfect for family getaways.</p>
+              <div class="room-card-amenities">
+                <span class="amenity-chip"><i class="fas fa-wifi"></i> WiFi</span>
+                <span class="amenity-chip"><i class="fas fa-child"></i> Kids</span>
+                <span class="amenity-chip"><i class="fas fa-tv"></i> Smart TV</span>
+              </div>
+            </div>
+            <div class="room-card-footer">
+              <div class="room-price"><span class="amount">₹12,000</span><span class="per">/night</span></div>
+              <a href="room-details.html" class="btn-view">View Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--
+    JAVA/JSP: <%@ include file="fragments/footer.html" %>
+  -->
+
+  <!-- FOOTER -->
+  <footer class="footer-main">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-brand">Hotel<span>Luxe</span></div>
+          <p class="footer-desc">Experience the perfect blend of luxury and comfort. Every stay at HotelLuxe is crafted to be an unforgettable memory.</p>
+          <div class="footer-social">
+            <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-6">
+          <h6 class="footer-heading">Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="rooms.html"><i class="fas fa-chevron-right"></i> Rooms</a></li>
+            <li><a href="index.html#amenities"><i class="fas fa-chevron-right"></i> Amenities</a></li>
+            <li><a href="index.html#gallery"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+            <li><a href="index.html#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6 col-6">
+          <h6 class="footer-heading">Room Types</h6>
+          <ul class="footer-links">
+            <li><a href="rooms.html"><i class="fas fa-chevron-right"></i> Standard</a></li>
+            <li><a href="rooms.html"><i class="fas fa-chevron-right"></i> Deluxe</a></li>
+            <li><a href="rooms.html"><i class="fas fa-chevron-right"></i> Suite</a></li>
+            <li><a href="rooms.html"><i class="fas fa-chevron-right"></i> Presidential</a></li>
+            <li><a href="rooms.html"><i class="fas fa-chevron-right"></i> Family</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <h6 class="footer-heading">Contact Us</h6>
+          <div class="footer-contact-item">
+            <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div><span>Address</span><p>123 Luxury Avenue, Marine Drive, Mumbai</p></div>
+          </div>
+          <div class="footer-contact-item">
+            <div class="icon"><i class="fas fa-phone-alt"></i></div>
+            <div><span>Phone</span><p>+91 98765 43210</p></div>
+          </div>
+          <div class="footer-contact-item">
+            <div class="icon"><i class="fas fa-envelope"></i></div>
+            <div><span>Email</span><p>reservations@hotelluxe.com</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom mt-5">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6"><p>&copy; 2026 <a href="index.html">HotelLuxe</a>. All rights reserved.</p></div>
+          <div class="col-md-6 text-md-end">
+            <p><a href="#" style="color:rgba(255,255,255,0.4);font-size:0.82rem;margin:0 10px;">Privacy Policy</a><a href="#" style="color:rgba(255,255,255,0.4);font-size:0.82rem;margin:0 10px;">Terms of Use</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elite Haven — Admin Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --primary:      #1a1a2e;
+      --secondary:    #16213e;
+      --accent:       #c9a84c;
+      --accent-light: #e8c96a;
+      --cream:        #f5f0e8;
+      --white:        #ffffff;
+      --text:         #2c2c2c;
+      --text-light:   #6c757d;
+      --shadow:       0 10px 40px rgba(0,0,0,0.12);
+      --shadow-lg:    0 20px 60px rgba(0,0,0,0.18);
+      --radius:       12px;
+      --transition:   0.35s ease;
+      --sidebar-w:    260px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      overflow-x: hidden;
+    }
+    h1,h2,h3,h4,h5,h6 { font-family: 'Playfair Display', serif; font-weight: 700; }
+    a { text-decoration: none; color: inherit; transition: color var(--transition); }
+    img { max-width: 100%; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--secondary); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+
+    /* ─── SIDEBAR ─── */
+    #sidebar {
+      position: fixed; top: 0; left: 0;
+      width: var(--sidebar-w);
+      height: 100vh;
+      background: var(--primary);
+      display: flex; flex-direction: column;
+      z-index: 1000;
+      transition: transform var(--transition);
+      overflow-y: auto;
+    }
+    .sidebar-brand {
+      padding: 28px 24px 20px;
+      border-bottom: 1px solid rgba(201,168,76,.18);
+    }
+    .sidebar-brand .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--accent);
+      letter-spacing: .5px;
+    }
+    .sidebar-brand .logo-sub {
+      font-size: .68rem;
+      color: rgba(255,255,255,.45);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    .nav-section-label {
+      font-size: .6rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.28);
+      padding: 20px 24px 6px;
+    }
+    .sidebar-nav { list-style: none; padding: 8px 0; flex: 1; }
+    .sidebar-nav li a {
+      display: flex; align-items: center; gap: 12px;
+      padding: 11px 24px;
+      font-size: .85rem;
+      font-weight: 500;
+      color: rgba(255,255,255,.62);
+      border-left: 3px solid transparent;
+      transition: all var(--transition);
+    }
+    .sidebar-nav li a i { font-size: 1rem; width: 20px; text-align: center; }
+    .sidebar-nav li a:hover,
+    .sidebar-nav li a.active {
+      color: var(--accent);
+      background: rgba(201,168,76,.08);
+      border-left-color: var(--accent);
+    }
+    .sidebar-footer {
+      padding: 16px 24px;
+      border-top: 1px solid rgba(201,168,76,.12);
+      font-size: .75rem;
+      color: rgba(255,255,255,.3);
+    }
+
+    /* ─── TOPBAR ─── */
+    #topbar {
+      position: fixed; top: 0;
+      left: var(--sidebar-w); right: 0;
+      height: 64px;
+      background: var(--white);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 28px;
+      box-shadow: 0 2px 16px rgba(0,0,0,.07);
+      z-index: 900;
+      transition: left var(--transition);
+    }
+    .topbar-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--primary);
+    }
+    .topbar-right { display: flex; align-items: center; gap: 16px; }
+    .topbar-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--primary); font-weight: 700; font-size: .9rem;
+      cursor: pointer;
+    }
+    .btn-sidebar-toggle {
+      display: none;
+      background: none; border: none;
+      font-size: 1.4rem; color: var(--primary); cursor: pointer;
+    }
+
+    /* ─── MAIN CONTENT ─── */
+    #main {
+      margin-left: var(--sidebar-w);
+      margin-top: 64px;
+      padding: 32px 28px;
+      min-height: calc(100vh - 64px);
+      transition: margin-left var(--transition);
+    }
+
+    /* ─── STAT CARDS ─── */
+    .stat-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      box-shadow: var(--shadow);
+      display: flex; align-items: center; gap: 18px;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .stat-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .stat-icon.gold  { background: rgba(201,168,76,.15); color: var(--accent); }
+    .stat-icon.green { background: rgba(40,167,69,.12);  color: #28a745; }
+    .stat-icon.blue  { background: rgba(13,110,253,.12); color: #0d6efd; }
+    .stat-icon.red   { background: rgba(220,53,69,.12);  color: #dc3545; }
+    .stat-label { font-size: .72rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-light); }
+    .stat-value { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 700; color: var(--primary); line-height: 1.1; }
+
+    /* ─── SECTION PANELS ─── */
+    .panel {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+    .panel-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 24px;
+      background: var(--primary);
+      color: var(--white);
+    }
+    .panel-header h5 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--accent);
+      margin: 0;
+    }
+    .panel-body { padding: 20px 24px; }
+
+    /* ─── TABLES ─── */
+    .table-responsive { overflow-x: auto; }
+    table.dash-table { width: 100%; border-collapse: collapse; font-size: .83rem; }
+    .dash-table thead th {
+      background: rgba(26,26,46,.06);
+      color: var(--primary);
+      font-weight: 600;
+      padding: 10px 14px;
+      text-align: left;
+      white-space: nowrap;
+      border-bottom: 2px solid rgba(201,168,76,.3);
+    }
+    .dash-table tbody td {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(0,0,0,.05);
+      vertical-align: middle;
+    }
+    .dash-table tbody tr:hover { background: rgba(201,168,76,.05); }
+    .dash-table tbody tr:last-child td { border-bottom: none; }
+
+    /* ─── BADGES ─── */
+    .badge-status {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .5px;
+    }
+    .badge-available  { background: rgba(40,167,69,.12);  color: #1a7a36; }
+    .badge-occupied   { background: rgba(220,53,69,.12);  color: #b02a37; }
+    .badge-confirmed  { background: rgba(13,110,253,.12); color: #0a4fcf; }
+    .badge-pending    { background: rgba(255,193,7,.15);  color: #856404; }
+    .badge-cancelled  { background: rgba(108,117,125,.12);color: #495057; }
+    .badge-checkedin  { background: rgba(201,168,76,.18); color: #7a5c10; }
+
+    /* ─── BUTTONS ─── */
+    .btn-gold {
+      background: var(--accent); color: var(--primary); font-weight: 600;
+      border: none; border-radius: 8px; padding: 7px 16px; font-size: .8rem;
+      transition: background var(--transition), transform var(--transition);
+      cursor: pointer;
+    }
+    .btn-gold:hover { background: var(--accent-light); transform: translateY(-1px); }
+    .btn-outline-dark-custom {
+      background: none; color: var(--primary);
+      border: 1.5px solid var(--primary); border-radius: 8px;
+      padding: 6px 14px; font-size: .8rem; font-weight: 500;
+      transition: all var(--transition); cursor: pointer;
+    }
+    .btn-outline-dark-custom:hover { background: var(--primary); color: var(--white); }
+    .btn-icon {
+      background: none; border: none; cursor: pointer;
+      font-size: 1rem; padding: 4px 8px; border-radius: 6px;
+      transition: background var(--transition);
+    }
+    .btn-icon.edit  { color: #0d6efd; } .btn-icon.edit:hover  { background: rgba(13,110,253,.1); }
+    .btn-icon.del   { color: #dc3545; } .btn-icon.del:hover   { background: rgba(220,53,69,.1); }
+    .btn-icon.check { color: #28a745; } .btn-icon.check:hover { background: rgba(40,167,69,.1); }
+    .btn-icon.close2{ color: #6c757d; } .btn-icon.close2:hover{ background: rgba(108,117,125,.1); }
+
+    /* ─── SEARCH BAR ─── */
+    .search-bar {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px;
+    }
+    .search-bar input, .search-bar select {
+      padding: 8px 14px; border: 1.5px solid rgba(0,0,0,.12);
+      border-radius: 8px; font-size: .82rem; font-family: 'Poppins', sans-serif;
+      outline: none; transition: border-color var(--transition);
+      background: var(--white);
+    }
+    .search-bar input:focus, .search-bar select:focus { border-color: var(--accent); }
+    .search-bar input { flex: 1; min-width: 160px; }
+
+    /* ─── MODAL ─── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(26,26,46,.7); z-index: 2000;
+      align-items: center; justify-content: center;
+    }
+    .modal-overlay.show { display: flex; }
+    .modal-box {
+      background: var(--white); border-radius: 14px;
+      padding: 32px 28px; width: min(480px, 94vw);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      animation: modalIn .3s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(20px) scale(.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .modal-box h5 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary); font-size: 1.2rem; margin-bottom: 20px;
+    }
+    .modal-close {
+      position: absolute; top: 16px; right: 20px;
+      background: none; border: none; font-size: 1.3rem;
+      color: var(--text-light); cursor: pointer;
+    }
+    .form-group { margin-bottom: 14px; }
+    .form-group label {
+      display: block; font-size: .78rem; font-weight: 600;
+      color: var(--text); margin-bottom: 5px; letter-spacing: .4px;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 9px 14px;
+      border: 1.5px solid rgba(0,0,0,.14); border-radius: 8px;
+      font-family: 'Poppins', sans-serif; font-size: .82rem;
+      outline: none; transition: border-color var(--transition);
+    }
+    .form-group input:focus, .form-group select:focus { border-color: var(--accent); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+
+    /* ─── SECTIONS (visibility) ─── */
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* ─── FACILITY CHIPS ─── */
+    .facility-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .chip {
+      background: rgba(201,168,76,.12);
+      color: var(--primary);
+      border: 1px solid rgba(201,168,76,.3);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: .78rem;
+      font-weight: 500;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .chip .chip-del { background: none; border: none; color: #dc3545; cursor: pointer; font-size: .75rem; padding: 0; }
+
+    /* ─── TOAST ─── */
+    #toast-container {
+      position: fixed; bottom: 24px; right: 24px;
+      display: flex; flex-direction: column; gap: 10px; z-index: 3000;
+    }
+    .toast-msg {
+      background: var(--primary); color: var(--accent);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px; padding: 12px 18px;
+      font-size: .8rem; font-weight: 500;
+      box-shadow: var(--shadow);
+      animation: toastIn .3s ease;
+    }
+    @keyframes toastIn { from { opacity:0; transform: translateX(40px); } to { opacity:1; transform: none; } }
+
+    /* ─── OVERLAY (mobile sidebar) ─── */
+    #sidebar-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.5); z-index: 999;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      #sidebar { transform: translateX(-100%); }
+      #sidebar.open { transform: translateX(0); }
+      #sidebar-overlay { display: none; }
+      #sidebar-overlay.show { display: block; }
+      #topbar { left: 0; }
+      #main { margin-left: 0; padding: 20px 14px; }
+      .btn-sidebar-toggle { display: block; }
+      .form-row { grid-template-columns: 1fr; }
+      .stat-value { font-size: 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .panel-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .search-bar input { min-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Sidebar Overlay (mobile) -->
+<div id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<!-- ══ SIDEBAR ══ -->
+<aside id="sidebar">
+  <div class="sidebar-brand">
+    <div class="logo-text">Elite Haven</div>
+    <div class="logo-sub">Admin Panel</div>
+  </div>
+
+  <div class="nav-section-label">Main</div>
+  <ul class="sidebar-nav">
+    <li><a href="#" class="active" onclick="navigate('dashboard',this)"><i class="bi bi-grid-1x2"></i> Dashboard</a></li>
+  </ul>
+
+  <div class="nav-section-label">Manage</div>
+  <ul class="sidebar-nav">
+    <li><a href="#" onclick="navigate('rooms',this)"><i class="bi bi-door-closed"></i> Rooms</a></li>
+    <li><a href="#" onclick="navigate('bookings',this)"><i class="bi bi-journal-text"></i> Bookings</a></li>
+    <li><a href="#" onclick="navigate('checkinout',this)"><i class="bi bi-arrow-left-right"></i> Check-in / Out</a></li>
+    <li><a href="#" onclick="navigate('users',this)"><i class="bi bi-people"></i> Users</a></li>
+    <li><a href="#" onclick="navigate('facilities',this)"><i class="bi bi-stars"></i> Facilities</a></li>
+  </ul>
+
+  <div class="sidebar-footer">© 2025 Elite Haven &nbsp;·&nbsp; v1.0</div>
+</aside>Elite Havenck="toggleSidebar()"><i class="bi bi-list"></i></button>
+    <span class="topbar-title" id="topbar-title">Dashboard</span>
+  </div>
+  <div class="topbar-right">
+    <span style="font-size:.8rem;color:var(--text-light);display:none;" id="topbar-date"></span>
+    <div class="topbar-avatar" title="Admin">A</div>
+  </div>
+</header>
+
+<!-- ══ MAIN ══ -->
+<main id="main">
+
+  <!-- ── DASHBOARD ── -->
+  <section id="sec-dashboard" class="section active">
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-lg-3">
+        <div class="stat-card">
+          <div class="stat-icon gold"><i class="bi bi-door-closed-fill"></i></div>
+          <div>
+            <div class="stat-label">Total Rooms</div>
+            <div class="stat-value" id="stat-total-rooms">0</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="bi bi-check-circle-fill"></i></div>
+          <div>
+            <div class="stat-label">Available</div>
+            <div class="stat-value" id="stat-avail-rooms">0</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="stat-card">
+          <div class="stat-icon blue"><i class="bi bi-calendar-check-fill"></i></div>
+          <div>
+            <div class="stat-label">Bookings Today</div>
+            <div class="stat-value" id="stat-bookings-today">0</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="stat-card">
+          <div class="stat-icon red"><i class="bi bi-people-fill"></i></div>
+          <div>
+            <div class="stat-label">Total Users</div>
+            <div class="stat-value" id="stat-total-users">0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Bookings -->
+    <div class="panel">
+      <div class="panel-header">
+        <h5><i class="bi bi-journal-text me-2"></i>Recent Bookings</h5>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="dash-table" id="dash-recent-bookings">
+            <thead><tr><th>Customer</th><th>Room</th><th>Check-In</th><th>Check-Out</th><th>Status</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ROOMS ── -->
+  <section id="sec-rooms" class="section">
+    <div class="panel">
+      <div class="panel-header">
+        <h5><i class="bi bi-door-closed me-2"></i>Room Management</h5>
+        <button class="btn-gold" onclick="openRoomModal()"><i class="bi bi-plus-lg me-1"></i>Add Room</button>
+      </div>
+      <div class="panel-body">
+        <div class="search-bar">
+          <input type="text" id="room-search" placeholder="Search room…" oninput="renderRooms()"/>
+          <select id="room-filter-type" onchange="renderRooms()">
+            <option value="">All Types</option>
+            <option>Standard</option><option>Deluxe</option>
+            <option>Suite</option><option>Presidential</option>
+          </select>
+          <select id="room-filter-status" onchange="renderRooms()">
+            <option value="">All Status</option>
+            <option>Available</option><option>Occupied</option>
+          </select>
+        </div>
+        <div class="table-responsive">
+          <table class="dash-table">
+            <thead><tr><th>#</th><th>Room No.</th><th>Type</th><th>Price/Night</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="rooms-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BOOKINGS ── -->
+  <section id="sec-bookings" class="section">
+    <div class="panel">
+      <div class="panel-header">
+        <h5><i class="bi bi-journal-text me-2"></i>Booking Management</h5>
+        <button class="btn-gold" onclick="openBookingModal()"><i class="bi bi-plus-lg me-1"></i>Add Booking</button>
+      </div>
+      <div class="panel-body">
+        <div class="search-bar">
+          <input type="text" id="booking-search" placeholder="Search by name or email…" oninput="renderBookings()"/>
+          <select id="booking-filter-status" onchange="renderBookings()">
+            <option value="">All Status</option>
+            <option>Pending</option><option>Confirmed</option>
+            <option>Cancelled</option><option>Checked-In</option>
+          </select>
+        </div>
+        <div class="table-responsive">
+          <table class="dash-table">
+            <thead><tr><th>#</th><th>Customer</th><th>Email</th><th>Room</th><th>Check-In</th><th>Check-Out</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="bookings-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CHECK-IN / OUT ── -->
+  <section id="sec-checkinout" class="section">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="panel">
+          <div class="panel-header"><h5><i class="bi bi-box-arrow-in-right me-2"></i>Check-In</h5></div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="dash-table">
+                <thead><tr><th>Customer</th><th>Room</th><th>Date</th><th>Action</th></tr></thead>
+                <tbody id="checkin-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="panel">
+          <div class="panel-header"><h5><i class="bi bi-box-arrow-right me-2"></i>Check-Out</h5></div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="dash-table">
+                <thead><tr><th>Customer</th><th>Room</th><th>Date</th><th>Action</th></tr></thead>
+                <tbody id="checkout-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── USERS ── -->
+  <section id="sec-users" class="section">
+    <div class="panel">
+      <div class="panel-header">
+        <h5><i class="bi bi-people me-2"></i>User Management</h5>
+      </div>
+      <div class="panel-body">
+        <div class="search-bar">
+          <input type="text" id="user-search" placeholder="Search user…" oninput="renderUsers()"/>
+        </div>
+        <div class="table-responsive">
+          <table class="dash-table">
+            <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Joined</th><th>Actions</th></tr></thead>
+            <tbody id="users-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FACILITIES ── -->
+  <section id="sec-facilities" class="section">
+    <div class="panel">
+      <div class="panel-header">
+        <h5><i class="bi bi-stars me-2"></i>Facilities Management</h5>
+      </div>
+      <div class="panel-body">
+        <div class="search-bar">
+          <input type="text" id="fac-input" placeholder="New facility name (e.g. Pool, Gym…)"/>
+          <select id="fac-icon">
+            <option value="bi-wifi">WiFi</option>
+            <option value="bi-water">Pool</option>
+            <option value="bi-bicycle">Gym</option>
+            <option value="bi-cup-hot-fill">Restaurant</option>
+            <option value="bi-car-front-fill">Parking</option>
+            <option value="bi-wind">AC</option>
+            <option value="bi-tv">Smart TV</option>
+            <option value="bi-shield-check">Security</option>
+          </select>
+          <button class="btn-gold" onclick="addFacility()"><i class="bi bi-plus-lg me-1"></i>Add</button>
+        </div>
+        <div class="facility-chips" id="facility-chips"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══ TOAST ══ -->
+<div id="toast-container"></div>
+
+<!-- ══ MODALS ══ -->
+
+<!-- Room Modal -->
+<div class="modal-overlay" id="room-modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('room-modal')"><i class="bi bi-x-lg"></i></button>
+    <h5 id="room-modal-title">Add New Room</h5>
+    <input type="hidden" id="room-edit-id"/>
+    <div class="form-row">
+      <div class="form-group"><label>Room Number</label><input type="text" id="rm-number" placeholder="e.g. 101"/></div>
+      <div class="form-group"><label>Room Type</label>
+        <select id="rm-type">
+          <option>Standard</option><option>Deluxe</option>
+          <option>Suite</option><option>Presidential</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Price / Night (₹)</label><input type="number" id="rm-price" placeholder="e.g. 4500"/></div>
+      <div class="form-group"><label>Status</label>
+        <select id="rm-status"><option>Available</option><option>Occupied</option></select>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-outline-dark-custom" onclick="closeModal('room-modal')">Cancel</button>
+      <button class="btn-gold" onclick="saveRoom()">Save Room</button>
+    </div>
+  </div>
+</div>
+
+<!-- Booking Modal -->
+<div class="modal-overlay" id="booking-modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('booking-modal')"><i class="bi bi-x-lg"></i></button>
+    <h5 id="booking-modal-title">Add New Booking</h5>
+    <input type="hidden" id="booking-edit-id"/>
+    <div class="form-row">
+      <div class="form-group"><label>Customer Name</label><input type="text" id="bk-name" placeholder="Full name"/></div>
+      <div class="form-group"><label>Email</label><input type="email" id="bk-email" placeholder="email@example.com"/></div>
+    </div>
+    <div class="form-group"><label>Room</label><select id="bk-room"></select></div>
+    <div class="form-row">
+      <div class="form-group"><label>Check-In</label><input type="date" id="bk-checkin"/></div>
+      <div class="form-group"><label>Check-Out</label><input type="date" id="bk-checkout"/></div>
+    </div>
+    <div class="form-group"><label>Status</label>
+      <select id="bk-status">
+        <option>Pending</option><option>Confirmed</option>
+        <option>Cancelled</option><option>Checked-In</option>
+      </select>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-outline-dark-custom" onclick="closeModal('booking-modal')">Cancel</button>
+      <button class="btn-gold" onclick="saveBooking()">Save Booking</button>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm Delete Modal -->
+<div class="modal-overlay" id="confirm-modal">
+  <div class="modal-box" style="max-width:360px;text-align:center;">
+    <h5 style="margin-bottom:10px;">Confirm Delete</h5>
+    <p style="font-size:.85rem;color:var(--text-light);margin-bottom:24px;" id="confirm-msg">Are you sure?</p>
+    <div style="display:flex;gap:10px;justify-content:center;">
+      <button class="btn-outline-dark-custom" onclick="closeModal('confirm-modal')">Cancel</button>
+      <button class="btn-gold" style="background:#dc3545;" id="confirm-yes-btn">Delete</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+/* ══════════════════════════════════════════
+   DATA STORE
+══════════════════════════════════════════ */
+let rooms = [
+  { id:1, number:'101', type:'Deluxe',       price:4500, status:'Available' },
+  { id:2, number:'102', type:'Suite',         price:8500, status:'Occupied'  },
+  { id:3, number:'103', type:'Standard',      price:2500, status:'Available' },
+  { id:4, number:'201', type:'Presidential',  price:18000,status:'Occupied'  },
+  { id:5, number:'202', type:'Deluxe',        price:5000, status:'Available' },
+];
+
+const today = new Date().toISOString().split('T')[0];
+let bookings = [
+  { id:1, name:'Arjun Sharma',  email:'arjun@gmail.com', room:'101', checkin:'2025-07-10', checkout:'2025-07-14', status:'Confirmed'  },
+  { id:2, name:'Priya Menon',   email:'priya@mail.com',  room:'102', checkin:today,        checkout:'2025-07-20', status:'Checked-In' },
+  { id:3, name:'Rahul Verma',   email:'rahul@test.com',  room:'103', checkin:'2025-07-12', checkout:'2025-07-15', status:'Pending'    },
+  { id:4, name:'Sonia Kapoor',  email:'sonia@mail.com',  room:'201', checkin:today,        checkout:'2025-07-18', status:'Confirmed'  },
+  { id:5, name:'Amit Joshi',    email:'amit@web.com',    room:'202', checkin:'2025-07-08', checkout:'2025-07-09', status:'Cancelled'  },
+];
+
+let users = [
+  { id:1, name:'Arjun Sharma', email:'arjun@gmail.com', joined:'2024-11-01' },
+  { id:2, name:'Priya Menon',  email:'priya@mail.com',  joined:'2024-12-14' },
+  { id:3, name:'Rahul Verma',  email:'rahul@test.com',  joined:'2025-01-20' },
+  { id:4, name:'Sonia Kapoor', email:'sonia@mail.com',  joined:'2025-02-05' },
+  { id:5, name:'Amit Joshi',   email:'amit@web.com',    joined:'2025-03-30' },
+];
+
+let facilities = [
+  { id:1, name:'WiFi',       icon:'bi-wifi'      },
+  { id:2, name:'Pool',       icon:'bi-water'     },
+  { id:3, name:'Gym',        icon:'bi-bicycle'   },
+  { id:4, name:'Restaurant', icon:'bi-cup-hot-fill' },
+];
+
+let roomIdSeq = 10, bookingIdSeq = 10, userIdSeq = 10, facIdSeq = 10;
+
+/* ══════════════════════════════════════════
+   NAVIGATION
+══════════════════════════════════════════ */
+const sections = ['dashboard','rooms','bookings','checkinout','users','facilities'];
+const sectionTitles = {
+  dashboard:'Dashboard', rooms:'Room Management',
+  bookings:'Booking Management', checkinout:'Check-In / Check-Out',
+  users:'User Management', facilities:'Facilities'
+};
+
+function navigate(id, el) {
+  sections.forEach(s => {
+    document.getElementById('sec-'+s).classList.remove('active');
+  });
+  document.getElementById('sec-'+id).classList.add('active');
+  document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+  if (el) el.classList.add('active');
+  document.getElementById('topbar-title').textContent = sectionTitles[id] || id;
+  if (window.innerWidth <= 768) closeSidebar();
+  renderSection(id);
+}
+
+function renderSection(id) {
+  if (id === 'dashboard')   renderDashboard();
+  if (id === 'rooms')       renderRooms();
+  if (id === 'bookings')    renderBookings();
+  if (id === 'checkinout')  renderCheckInOut();
+  if (id === 'users')       renderUsers();
+  if (id === 'facilities')  renderFacilities();
+}
+
+/* ══════════════════════════════════════════
+   SIDEBAR (mobile)
+══════════════════════════════════════════ */
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebar-overlay').classList.toggle('show');
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('show');
+}
+
+/* ══════════════════════════════════════════
+   TOAST
+══════════════════════════════════════════ */
+function toast(msg) {
+  const c = document.getElementById('toast-container');
+  const t = document.createElement('div');
+  t.className = 'toast-msg'; t.textContent = msg;
+  c.appendChild(t);
+  setTimeout(() => t.remove(), 3200);
+}
+
+/* ══════════════════════════════════════════
+   MODAL HELPERS
+══════════════════════════════════════════ */
+function openModal(id)  { document.getElementById(id).classList.add('show'); }
+function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+function confirmAction(msg, cb) {
+  document.getElementById('confirm-msg').textContent = msg;
+  document.getElementById('confirm-yes-btn').onclick = () => { cb(); closeModal('confirm-modal'); };
+  openModal('confirm-modal');
+}
+
+/* ══════════════════════════════════════════
+   BADGE
+══════════════════════════════════════════ */
+function statusBadge(s) {
+  const map = {
+    'Available': 'badge-available', 'Occupied': 'badge-occupied',
+    'Confirmed': 'badge-confirmed', 'Pending': 'badge-pending',
+    'Cancelled': 'badge-cancelled', 'Checked-In': 'badge-checkedin'
+  };
+  return `<span class="badge-status ${map[s]||''}">${s}</span>`;
+}
+
+/* ══════════════════════════════════════════
+   DASHBOARD
+══════════════════════════════════════════ */
+function renderDashboard() {
+  document.getElementById('stat-total-rooms').textContent  = rooms.length;
+  document.getElementById('stat-avail-rooms').textContent  = rooms.filter(r=>r.status==='Available').length;
+  document.getElementById('stat-bookings-today').textContent = bookings.filter(b=>b.checkin===today).length;
+  document.getElementById('stat-total-users').textContent  = users.length;
+
+  const tbody = document.querySelector('#dash-recent-bookings tbody');
+  tbody.innerHTML = '';
+  [...bookings].reverse().slice(0,5).forEach(b => {
+    tbody.innerHTML += `<tr>
+      <td>${b.name}</td>
+      <td>Room ${b.room}</td>
+      <td>${b.checkin}</td>
+      <td>${b.checkout}</td>
+      <td>${statusBadge(b.status)}</td>
+    </tr>`;
+  });
+}
+
+/* ══════════════════════════════════════════
+   ROOMS
+══════════════════════════════════════════ */
+function renderRooms() {
+  const q  = (document.getElementById('room-search').value||'').toLowerCase();
+  const ft = document.getElementById('room-filter-type').value;
+  const fs = document.getElementById('room-filter-status').value;
+  const tbody = document.getElementById('rooms-tbody');
+  tbody.innerHTML = '';
+  let filtered = rooms.filter(r =>
+    (!q  || r.number.includes(q) || r.type.toLowerCase().includes(q)) &&
+    (!ft || r.type === ft) &&
+    (!fs || r.status === fs)
+  );
+  if (!filtered.length) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-light);padding:24px;">No rooms found.</td></tr>'; return; }
+  filtered.forEach((r, i) => {
+    tbody.innerHTML += `<tr>
+      <td>${i+1}</td>
+      <td><strong>${r.number}</strong></td>
+      <td>${r.type}</td>
+      <td>₹${r.price.toLocaleString()}</td>
+      <td>${statusBadge(r.status)}</td>
+      <td>
+        <button class="btn-icon edit" onclick="editRoom(${r.id})" title="Edit"><i class="bi bi-pencil"></i></button>
+        <button class="btn-icon del"  onclick="deleteRoom(${r.id})" title="Delete"><i class="bi bi-trash"></i></button>
+      </td>
+    </tr>`;
+  });
+}
+
+function openRoomModal(id) {
+  document.getElementById('room-edit-id').value = '';
+  document.getElementById('room-modal-title').textContent = 'Add New Room';
+  ['rm-number','rm-price'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('rm-type').value = 'Standard';
+  document.getElementById('rm-status').value = 'Available';
+  openModal('room-modal');
+}
+function editRoom(id) {
+  const r = rooms.find(x=>x.id===id); if (!r) return;
+  document.getElementById('room-edit-id').value = id;
+  document.getElementById('room-modal-title').textContent = 'Edit Room';
+  document.getElementById('rm-number').value = r.number;
+  document.getElementById('rm-type').value   = r.type;
+  document.getElementById('rm-price').value  = r.price;
+  document.getElementById('rm-status').value = r.status;
+  openModal('room-modal');
+}
+function saveRoom() {
+  const num = document.getElementById('rm-number').value.trim();
+  const price = parseFloat(document.getElementById('rm-price').value);
+  if (!num || !price) { toast('Please fill all fields.'); return; }
+  const eid = document.getElementById('room-edit-id').value;
+  if (eid) {
+    const r = rooms.find(x=>x.id==eid);
+    r.number = num; r.type = document.getElementById('rm-type').value;
+    r.price  = price; r.status = document.getElementById('rm-status').value;
+    toast('Room updated ✓');
+  } else {
+    rooms.push({ id: ++roomIdSeq, number:num, type: document.getElementById('rm-type').value, price, status: document.getElementById('rm-status').value });
+    toast('Room added ✓');
+  }
+  closeModal('room-modal'); renderRooms(); renderDashboard();
+}
+function deleteRoom(id) {
+  confirmAction('Delete this room? This cannot be undone.', () => {
+    rooms = rooms.filter(r=>r.id!==id);
+    toast('Room deleted.'); renderRooms(); renderDashboard();
+  });
+}
+
+/* ══════════════════════════════════════════
+   BOOKINGS
+══════════════════════════════════════════ */
+function renderBookings() {
+  const q  = (document.getElementById('booking-search').value||'').toLowerCase();
+  const fs = document.getElementById('booking-filter-status').value;
+  const tbody = document.getElementById('bookings-tbody');
+  tbody.innerHTML = '';
+  let filtered = bookings.filter(b =>
+    (!q  || b.name.toLowerCase().includes(q) || b.email.toLowerCase().includes(q)) &&
+    (!fs || b.status === fs)
+  );
+  if (!filtered.length) { tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--text-light);padding:24px;">No bookings found.</td></tr>'; return; }
+  filtered.forEach((b,i) => {
+    tbody.innerHTML += `<tr>
+      <td>${i+1}</td>
+      <td>${b.name}</td>
+      <td style="font-size:.75rem;color:var(--text-light)">${b.email}</td>
+      <td>Room ${b.room}</td>
+      <td>${b.checkin}</td>
+      <td>${b.checkout}</td>
+      <td>${statusBadge(b.status)}</td>
+      <td>
+        ${b.status==='Pending'?`<button class="btn-icon check" onclick="approveBooking(${b.id})" title="Confirm"><i class="bi bi-check-lg"></i></button>`:''}
+        ${b.status!=='Cancelled'?`<button class="btn-icon close2" onclick="cancelBooking(${b.id})" title="Cancel"><i class="bi bi-x-lg"></i></button>`:''}
+        <button class="btn-icon edit" onclick="editBooking(${b.id})" title="Edit"><i class="bi bi-pencil"></i></button>
+        <button class="btn-icon del"  onclick="deleteBooking(${b.id})" title="Delete"><i class="bi bi-trash"></i></button>
+      </td>
+    </tr>`;
+  });
+}
+
+function populateRoomSelect(selId, val) {
+  const sel = document.getElementById(selId);
+  sel.innerHTML = rooms.map(r => `<option ${r.number==val?'selected':''}>${r.number}</option>`).join('');
+}
+function openBookingModal() {
+  document.getElementById('booking-edit-id').value = '';
+  document.getElementById('booking-modal-title').textContent = 'Add New Booking';
+  ['bk-name','bk-email','bk-checkin','bk-checkout'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('bk-status').value = 'Pending';
+  populateRoomSelect('bk-room', '');
+  openModal('booking-modal');
+}
+function editBooking(id) {
+  const b = bookings.find(x=>x.id===id); if (!b) return;
+  document.getElementById('booking-edit-id').value = id;
+  document.getElementById('booking-modal-title').textContent = 'Edit Booking';
+  document.getElementById('bk-name').value    = b.name;
+  document.getElementById('bk-email').value   = b.email;
+  document.getElementById('bk-checkin').value = b.checkin;
+  document.getElementById('bk-checkout').value= b.checkout;
+  document.getElementById('bk-status').value  = b.status;
+  populateRoomSelect('bk-room', b.room);
+  openModal('booking-modal');
+}
+function saveBooking() {
+  const name = document.getElementById('bk-name').value.trim();
+  const email= document.getElementById('bk-email').value.trim();
+  const checkin  = document.getElementById('bk-checkin').value;
+  const checkout = document.getElementById('bk-checkout').value;
+  if (!name||!email||!checkin||!checkout) { toast('Please fill all fields.'); return; }
+  const eid = document.getElementById('booking-edit-id').value;
+  const data = { name, email, room: document.getElementById('bk-room').value, checkin, checkout, status: document.getElementById('bk-status').value };
+  if (eid) {
+    Object.assign(bookings.find(x=>x.id==eid), data);
+    toast('Booking updated ✓');
+  } else {
+    bookings.push({ id: ++bookingIdSeq, ...data });
+    toast('Booking added ✓');
+  }
+  closeModal('booking-modal'); renderBookings(); renderDashboard();
+}
+function approveBooking(id) {
+  const b = bookings.find(x=>x.id===id); if (!b) return;
+  b.status = 'Confirmed'; toast('Booking confirmed ✓');
+  renderBookings(); renderDashboard();
+}
+function cancelBooking(id) {
+  confirmAction('Cancel this booking?', () => {
+    bookings.find(x=>x.id===id).status = 'Cancelled';
+    toast('Booking cancelled.'); renderBookings(); renderDashboard();
+  });
+}
+function deleteBooking(id) {
+  confirmAction('Delete this booking permanently?', () => {
+    bookings = bookings.filter(b=>b.id!==id);
+    toast('Booking deleted.'); renderBookings(); renderDashboard();
+  });
+}
+
+/* ══════════════════════════════════════════
+   CHECK-IN / OUT
+══════════════════════════════════════════ */
+function renderCheckInOut() {
+  const ci = document.getElementById('checkin-tbody');
+  const co = document.getElementById('checkout-tbody');
+  ci.innerHTML = ''; co.innerHTML = '';
+
+  const ciList = bookings.filter(b => b.status === 'Confirmed');
+  const coList = bookings.filter(b => b.status === 'Checked-In');
+
+  if (!ciList.length) ci.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--text-light);padding:18px;">No pending check-ins.</td></tr>';
+  ciList.forEach(b => {
+    ci.innerHTML += `<tr>
+      <td>${b.name}</td><td>Room ${b.room}</td><td>${b.checkin}</td>
+      <td><button class="btn-gold" style="font-size:.72rem;padding:5px 12px;" onclick="doCheckIn(${b.id})">Check-In</button></td>
+    </tr>`;
+  });
+
+  if (!coList.length) co.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--text-light);padding:18px;">No pending check-outs.</td></tr>';
+  coList.forEach(b => {
+    co.innerHTML += `<tr>
+      <td>${b.name}</td><td>Room ${b.room}</td><td>${b.checkout}</td>
+      <td><button class="btn-gold" style="font-size:.72rem;padding:5px 12px;background:#28a745;" onclick="doCheckOut(${b.id})">Check-Out</button></td>
+    </tr>`;
+  });
+}
+
+function doCheckIn(id) {
+  const b = bookings.find(x=>x.id===id); if (!b) return;
+  b.status = 'Checked-In';
+  const r = rooms.find(x=>x.number===b.room);
+  if (r) r.status = 'Occupied';
+  toast(`${b.name} checked in to Room ${b.room} ✓`);
+  renderCheckInOut(); renderDashboard(); renderRooms();
+}
+function doCheckOut(id) {
+  const b = bookings.find(x=>x.id===id); if (!b) return;
+  b.status = 'Cancelled';
+  const r = rooms.find(x=>x.number===b.room);
+  if (r) r.status = 'Available';
+  toast(`${b.name} checked out from Room ${b.room} ✓`);
+  renderCheckInOut(); renderDashboard(); renderRooms();
+}
+
+/* ══════════════════════════════════════════
+   USERS
+══════════════════════════════════════════ */
+function renderUsers() {
+  const q = (document.getElementById('user-search').value||'').toLowerCase();
+  const tbody = document.getElementById('users-tbody');
+  tbody.innerHTML = '';
+  const filtered = users.filter(u => !q || u.name.toLowerCase().includes(q) || u.email.toLowerCase().includes(q));
+  if (!filtered.length) { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--text-light);padding:24px;">No users found.</td></tr>'; return; }
+  filtered.forEach((u,i) => {
+    tbody.innerHTML += `<tr>
+      <td>${i+1}</td>
+      <td><strong>${u.name}</strong></td>
+      <td style="font-size:.78rem;color:var(--text-light)">${u.email}</td>
+      <td>${u.joined}</td>
+      <td><button class="btn-icon del" onclick="deleteUser(${u.id})" title="Delete"><i class="bi bi-trash"></i></button></td>
+    </tr>`;
+  });
+}
+function deleteUser(id) {
+  confirmAction('Delete this user?', () => {
+    users = users.filter(u=>u.id!==id);
+    toast('User deleted.'); renderUsers(); renderDashboard();
+  });
+}
+
+/* ══════════════════════════════════════════
+   FACILITIES
+══════════════════════════════════════════ */
+function renderFacilities() {
+  const chips = document.getElementById('facility-chips');
+  chips.innerHTML = '';
+  facilities.forEach(f => {
+    chips.innerHTML += `<div class="chip"><i class="bi ${f.icon}"></i>${f.name}<button class="chip-del" onclick="deleteFacility(${f.id})">✕</button></div>`;
+  });
+}
+function addFacility() {
+  const n = document.getElementById('fac-input').value.trim();
+  const icon = document.getElementById('fac-icon').value;
+  if (!n) { toast('Enter a facility name.'); return; }
+  facilities.push({ id: ++facIdSeq, name:n, icon });
+  document.getElementById('fac-input').value = '';
+  toast('Facility added ✓'); renderFacilities();
+}
+function deleteFacility(id) {
+  facilities = facilities.filter(f=>f.id!==id);
+  toast('Facility removed.'); renderFacilities();
+}
+
+/* ══════════════════════════════════════════
+   INIT
+══════════════════════════════════════════ */
+window.addEventListener('DOMContentLoaded', () => {
+  // Date in topbar
+  const d = new Date();
+  document.getElementById('topbar-date').textContent =
+    d.toLocaleDateString('en-IN', { weekday:'short', day:'numeric', month:'short', year:'numeric' });
+  document.getElementById('topbar-date').style.display = 'block';
+  renderDashboard();
+});
+
+// Close modals on overlay click
+document.querySelectorAll('.modal-overlay').forEach(ov => {
+  ov.addEventListener('click', e => { if (e.target===ov) ov.classList.remove('show'); });
+});
+</script>
+</body>
+</html>

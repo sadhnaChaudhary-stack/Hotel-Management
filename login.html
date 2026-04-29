@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login – Elite Haven</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --accent: #c9a84c;
+      --accent-light: rgba(201,168,76,0.15);
+      --dark: #1a1a2e;
+      --mid: #0f3460;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0d0d1a; min-height: 100vh; font-family: 'Poppins', sans-serif; }
+
+    /* -------- PRELOADER -------- */
+    #preloader {
+      position: fixed; inset: 0;
+      background: #1a1a2e;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s;
+    }
+    .preloader-inner { text-align: center; }
+    .preloader-ring {
+      width: 50px; height: 50px;
+      border: 3px solid rgba(201,168,76,0.2);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+    .preloader-text {
+      color: var(--accent);
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* -------- WRAPPER -------- */
+    .auth-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: stretch;
+    }
+
+    /* -------- LEFT PANEL -------- */
+    .auth-left {
+      flex: 1;
+      background: linear-gradient(160deg, #1a1a2e 0%, #0f3460 60%, #16213e 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 50px;
+      min-height: 100vh;
+    }
+    .auth-left-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=900&q=70') center/cover no-repeat;
+      opacity: 0.18;
+      animation: zoomBg 12s ease-in-out infinite alternate;
+    }
+    @keyframes zoomBg {
+      from { transform: scale(1); }
+      to   { transform: scale(1.08); }
+    }
+    .auth-left-content { position: relative; z-index: 2; animation: slideInLeft 0.6s ease both; }
+    .auth-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .auth-brand span { color: var(--accent); }
+    .auth-hero-text { margin-top: auto; padding-top: 80px; }
+    .auth-hero-text h2 { font-size: 2.6rem; color: #fff; line-height: 1.25; margin-bottom: 18px; font-family: 'Playfair Display', serif; }
+    .auth-hero-text h2 span { color: var(--accent); }
+    .auth-hero-text p { color: rgba(255,255,255,0.6); font-size: 1rem; line-height: 1.8; max-width: 400px; }
+    .auth-left-features { display: flex; gap: 28px; margin-top: 40px; }
+    .auth-feature-item { display: flex; align-items: center; gap: 10px; }
+    .auth-feature-icon {
+      width: 38px; height: 38px;
+      background: var(--accent-light);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .auth-feature-icon i { color: var(--accent); font-size: 0.9rem; }
+    .auth-feature-item span { color: rgba(255,255,255,0.7); font-size: 0.82rem; }
+    .auth-left-footer { position: relative; z-index: 2; color: rgba(255,255,255,0.35); font-size: 0.78rem; margin-top: 40px; }
+    .auth-testimonial {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 22px;
+      margin-top: 40px;
+    }
+    .auth-testimonial-text { color: rgba(255,255,255,0.55); font-size: 0.85rem; line-height: 1.8; margin-bottom: 14px; }
+    .auth-testimonial-user { display: flex; align-items: center; gap: 12px; }
+    .auth-testimonial-user img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); }
+    .auth-testimonial-name { color: #fff; font-size: 0.85rem; font-weight: 600; }
+    .auth-testimonial-role { color: var(--accent); font-size: 0.75rem; }
+    .auth-testimonial-stars { margin-left: auto; color: var(--accent); font-size: 0.75rem; }
+
+    /* -------- RIGHT PANEL -------- */
+    .auth-right {
+      width: 490px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 48px;
+      position: relative;
+      overflow-y: auto;
+    }
+    .auth-form-box { width: 100%; max-width: 390px; animation: slideInRight 0.5s ease both; }
+
+    .auth-form-title { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--dark); margin-bottom: 6px; }
+    .auth-form-subtitle { color: #6c757d; font-size: 0.88rem; margin-bottom: 32px; }
+    .auth-form-subtitle a { color: var(--accent); font-weight: 600; text-decoration: none; }
+    .auth-form-subtitle a:hover { text-decoration: underline; }
+
+    /* -- Secure badge + back -- */
+    .auth-top-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
+    .secure-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #f5f0e8; padding: 7px 14px; border-radius: 30px;
+    }
+    .secure-badge i { color: var(--accent); font-size: 0.75rem; }
+    .secure-badge span { font-size: 0.75rem; font-weight: 600; color: var(--dark); text-transform: uppercase; letter-spacing: 0.5px; }
+    .back-link-mobile { color: var(--accent); font-size: 0.82rem; font-weight: 600; text-decoration: none; display: none; }
+
+    /* -- Alert -- */
+    .auth-alert {
+      border-radius: 10px; padding: 14px 16px; font-size: 0.85rem;
+      margin-bottom: 20px; display: none; align-items: flex-start; gap: 10px;
+    }
+    .auth-alert.show { display: flex; }
+    .auth-alert-error   { background: #fdf2f2; border: 1px solid #f5c6cb; color: #721c24; }
+    .auth-alert-success { background: #f0fff4; border: 1px solid #b7ebc6; color: #155724; }
+
+    /* -- Input groups -- */
+    .auth-input-group { position: relative; margin-bottom: 20px; }
+    .auth-input-group label {
+      display: block; font-size: 0.78rem; font-weight: 600;
+      color: var(--dark); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;
+    }
+    .input-wrap { position: relative; }
+    .input-icon {
+      position: absolute; left: 15px; top: 50%;
+      transform: translateY(-50%); color: #adb5bd; font-size: 0.9rem; transition: color 0.3s;
+      pointer-events: none;
+    }
+    .input-eye {
+      position: absolute; right: 15px; top: 50%;
+      transform: translateY(-50%); color: #adb5bd; cursor: pointer; font-size: 0.9rem; transition: color 0.3s;
+    }
+    .input-eye:hover { color: var(--dark); }
+    .auth-input-group input {
+      width: 100%; padding: 13px 44px;
+      border: 1.5px solid #e8e8e8; border-radius: 10px;
+      font-size: 0.9rem; font-family: 'Poppins', sans-serif;
+      color: #2c2c2c; background: #fafafa; transition: all 0.3s; outline: none;
+    }
+    .auth-input-group input:focus {
+      border-color: var(--accent); background: #fff;
+      box-shadow: 0 0 0 4px rgba(201,168,76,0.1);
+    }
+    .auth-input-group input:focus + .input-icon,
+    .input-wrap:focus-within .input-icon { color: var(--accent); }
+    .auth-input-group input.is-invalid { border-color: #e74c3c; box-shadow: 0 0 0 4px rgba(231,76,60,0.08); }
+    .invalid-msg { font-size: 0.76rem; color: #e74c3c; margin-top: 5px; display: none; }
+    .auth-input-group input.is-invalid ~ .invalid-msg { display: block; }
+
+    /* -- Remember + forgot -- */
+    .auth-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+    .auth-remember { display: flex; align-items: center; gap: 10px; }
+    .auth-remember input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--accent); cursor: pointer; }
+    .auth-remember label { font-size: 0.85rem; color: #6c757d; cursor: pointer; margin: 0; }
+    .forgot-link { font-size: 0.8rem; color: var(--accent); font-weight: 500; text-decoration: none; }
+    .forgot-link:hover { text-decoration: underline; }
+
+    /* -- Submit button -- */
+    .btn-auth-submit {
+      width: 100%; padding: 14px;
+      background: linear-gradient(135deg, var(--dark), var(--mid));
+      color: #fff; font-weight: 700; font-size: 0.95rem;
+      font-family: 'Poppins', sans-serif; border: none; border-radius: 10px;
+      cursor: pointer; transition: all 0.35s; letter-spacing: 0.5px;
+      position: relative; overflow: hidden;
+    }
+    .btn-auth-submit::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--accent), #e8c96a);
+      opacity: 0; transition: opacity 0.35s;
+    }
+    .btn-auth-submit:hover::before { opacity: 1; }
+    .btn-auth-submit:hover { color: var(--dark); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(201,168,76,0.4); }
+    .btn-auth-submit span { position: relative; z-index: 1; }
+    .btn-auth-submit .spinner {
+      display: none; width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,0.4); border-top-color: #fff;
+      border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto;
+    }
+    .btn-auth-submit.loading .spinner { display: inline-block; }
+    .btn-auth-submit.loading .btn-text { display: none; }
+
+    /* -- Admin link section -- */
+    .admin-link-box {
+      margin-top: 20px;
+      padding: 14px 18px;
+      background: linear-gradient(135deg, #f5f0e8, #fdf8ef);
+      border: 1.5px solid rgba(201,168,76,0.3);
+      border-radius: 12px;
+      display: none; /* shown via JS only if user is admin */
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .admin-link-box:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(201,168,76,0.2); }
+    .admin-link-box.visible { display: flex; }
+    .admin-icon {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--dark), var(--mid));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .admin-icon i { color: var(--accent); font-size: 0.9rem; }
+    .admin-text { flex: 1; }
+    .admin-text strong { display: block; font-size: 0.85rem; color: var(--dark); font-weight: 700; }
+    .admin-text span { font-size: 0.75rem; color: #6c757d; }
+    .admin-link-box .arrow { color: var(--accent); font-size: 0.8rem; }
+
+    /* -- Divider -- */
+    .auth-divider { display: flex; align-items: center; gap: 14px; margin: 24px 0; }
+    .auth-divider::before, .auth-divider::after { content: ''; flex: 1; height: 1px; background: #e8e8e8; }
+    .auth-divider span { color: #adb5bd; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+
+    /* -- Bottom register link -- */
+    .auth-bottom { text-align: center; margin-top: 28px; padding-top: 24px; border-top: 1px solid #f0f0f0; }
+    .auth-bottom span { font-size: 0.85rem; color: #adb5bd; }
+    .auth-bottom a { font-size: 0.85rem; font-weight: 700; color: var(--dark); text-decoration: none; }
+    .auth-bottom a:hover { color: var(--accent); }
+
+    /* -- Already logged in banner -- */
+    .logged-in-banner {
+      background: linear-gradient(135deg, #f0fff4, #e8f5e9);
+      border: 1.5px solid #b7ebc6;
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      display: none;
+      margin-bottom: 24px;
+    }
+    .logged-in-banner.visible { display: block; }
+    .logged-in-banner h4 { color: #155724; font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .logged-in-banner p { color: #2d6a4f; font-size: 0.85rem; margin-bottom: 14px; }
+    .logged-in-banner .btn-go {
+      display: inline-block; padding: 10px 24px;
+      background: #155724; color: #fff; border-radius: 8px;
+      font-size: 0.85rem; font-weight: 600; text-decoration: none;
+      transition: all 0.3s;
+    }
+    .logged-in-banner .btn-go:hover { background: #0d3b1e; }
+    .logged-in-banner .btn-logout {
+      display: inline-block; padding: 10px 24px;
+      background: transparent; color: #155724; border: 1.5px solid #155724; border-radius: 8px;
+      font-size: 0.85rem; font-weight: 600; text-decoration: none; margin-left: 10px;
+      cursor: pointer; transition: all 0.3s;
+    }
+    .logged-in-banner .btn-logout:hover { background: #155724; color: #fff; }
+
+    /* -- Animations -- */
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes slideInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes slideInLeft  { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+
+    /* -- Responsive -- */
+    @media (max-width: 991px) {
+      .auth-left { display: none; }
+      .auth-right { width: 100%; padding: 40px 24px; }
+      .back-link-mobile { display: inline-flex; align-items: center; gap: 6px; }
+    }
+    @media (max-width: 480px) {
+      .auth-right { padding: 32px 20px; }
+      .auth-form-title { font-size: 1.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-ring"></div>
+      <p class="preloader-text">Loading...</p>
+    </div>
+  </div>
+
+  <div class="auth-wrapper">
+
+    <!-- ===== LEFT PANEL ===== -->
+    <div class="auth-left">
+      <div class="auth-left-bg"></div>
+      <div class="auth-left-content">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <a href="index.html" class="auth-brand">Elite<span> Haven</span></a>
+          <a href="index.html" style="color:rgba(255,255,255,0.5);font-size:0.82rem;display:flex;align-items:center;gap:6px;transition:color 0.3s;"
+             onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">
+            <i class="fas fa-arrow-left"></i> Back to Home
+          </a>
+        </div>
+
+        <div class="auth-hero-text">
+          <h2>Welcome Back to<br><span>Luxury &amp; Comfort</span></h2>
+          <p>Log in to manage your bookings, explore exclusive member deals, and enjoy a personalized stay experience.</p>
+          <div class="auth-left-features">
+            <div class="auth-feature-item">
+              <div class="auth-feature-icon"><i class="fas fa-tag"></i></div>
+              <span>Member<br>Discounts</span>
+            </div>
+            <div class="auth-feature-item">
+              <div class="auth-feature-icon"><i class="fas fa-history"></i></div>
+              <span>Booking<br>History</span>
+            </div>
+            <div class="auth-feature-item">
+              <div class="auth-feature-icon"><i class="fas fa-gift"></i></div>
+              <span>Loyalty<br>Points</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-testimonial">
+          <div class="auth-testimonial-text">
+            "The member portal made it so easy to manage our family vacation. Got a free room upgrade thanks to loyalty points!"
+          </div>
+          <div class="auth-testimonial-user">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=70" alt="Arjun Sharma"/>
+            <div>
+              <div class="auth-testimonial-name">Arjun Sharma</div>
+              <div class="auth-testimonial-role">Gold Member · Mumbai</div>
+            </div>
+            <div class="auth-testimonial-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="auth-left-footer">&copy; 2026 Elite Haven. All rights reserved.</div>
+    </div>
+
+    <!-- ===== RIGHT PANEL ===== -->
+    <div class="auth-right">
+      <div class="auth-form-box">
+
+        <!-- Top bar -->
+        <div class="auth-top-bar">
+          <div class="secure-badge">
+            <i class="fas fa-lock"></i>
+            <span>Secure Login</span>
+          </div>
+          <a href="index.html" class="back-link-mobile">
+            <i class="fas fa-arrow-left"></i> Back
+          </a>
+        </div>
+
+        <!-- Already logged in banner -->
+        <div class="logged-in-banner" id="loggedInBanner">
+          <h4><i class="fas fa-check-circle me-2"></i>You're already logged in!</h4>
+          <p id="loggedInGreeting">Welcome back! You don't need to log in again.</p>
+          <a href="dashboard.html" class="btn-go"><i class="fas fa-tachometer-alt me-1"></i>Go to Dashboard</a>
+          <button class="btn-logout" id="logoutFromBanner">Log Out</button>
+        </div>
+
+        <h2 class="auth-form-title">Log In</h2>
+        <p class="auth-form-subtitle">
+          Don't have an account? <a href="register.html">Create one free</a>
+        </p>
+
+        <!-- Alert -->
+        <div class="auth-alert auth-alert-error" id="loginAlert">
+          <i class="fas fa-exclamation-circle" style="margin-top:2px;flex-shrink:0;"></i>
+          <span id="loginAlertMsg">Invalid email or password. Please try again.</span>
+        </div>
+
+        <!-- Form -->
+        <form id="loginForm" novalidate>
+
+          <!-- Email -->
+          <div class="auth-input-group">
+            <label for="loginEmail">Email Address</label>
+            <div class="input-wrap">
+              <i class="fas fa-envelope input-icon"></i>
+              <input type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email"/>
+            </div>
+            <div class="invalid-msg">Please enter a valid email address.</div>
+          </div>
+
+          <!-- Password -->
+          <div class="auth-input-group">
+            <label for="loginPassword">Password</label>
+            <div class="input-wrap">
+              <i class="fas fa-lock input-icon"></i>
+              <input type="password" id="loginPassword" placeholder="Enter your password" autocomplete="current-password"/>
+              <i class="fas fa-eye input-eye" id="toggleLoginPwd" title="Show/Hide password"></i>
+            </div>
+            <div class="invalid-msg">Password is required.</div>
+          </div>
+
+          <!-- Remember + Forgot -->
+          <div class="auth-row">
+            <div class="auth-remember">
+              <input type="checkbox" id="rememberMe"/>
+              <label for="rememberMe">Remember me</label>
+            </div>
+            <a href="forgot-password.html" class="forgot-link">Forgot password?</a>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="btn-auth-submit" id="loginBtn">
+            <div class="spinner"></div>
+            <span class="btn-text"><i class="fas fa-sign-in-alt me-2"></i>Log In to Account</span>
+          </button>
+
+        </form>
+
+        <!-- Admin Dashboard Link (shown only if user is admin via localStorage) -->
+        <a href="admin-dashboard.html" class="admin-link-box" id="adminLinkBox">
+          <div class="admin-icon"><i class="fas fa-shield-alt"></i></div>
+          <div class="admin-text">
+            <strong>Admin Dashboard</strong>
+            <span>Manage bookings, users &amp; settings</span>
+          </div>
+          <i class="fas fa-arrow-right arrow"></i>
+        </a>
+
+        <!-- Divider -->
+        <div class="auth-divider"><span>New here?</span></div>
+
+        <!-- Bottom register -->
+        <div class="auth-bottom">
+          <span>New to Elite Haven? </span>
+          <a href="register.html">Create Account →</a>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- end auth-wrapper -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+$(function () {
+
+  /* ─── PRELOADER ─── */
+  function hidePreloader() {
+    $('#preloader').css('opacity', 0);
+    setTimeout(() => $('#preloader').hide(), 500);
+  }
+  $(window).on('load', hidePreloader);
+  setTimeout(hidePreloader, 1500);
+
+  /* ─── HELPERS ─── */
+  function getUsers() {
+    try {
+      return JSON.parse(localStorage.getItem('users') || '[]');
+    } catch {
+      return [];
+    }
+  }
+
+  function saveSession(user) {
+    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('isLoggedIn', 'true');
+  }
+
+  function isAdmin(user) {
+    if (!user) return false;
+    return (user.role === 'admin' || user.isAdmin === true);
+  }
+
+  /* ─── ALERT ─── */
+  function showAlert(type, msg) {
+    $('#loginAlert')
+      .removeClass('auth-alert-error auth-alert-success show')
+      .addClass('auth-alert-' + type + ' show');
+    $('#loginAlertMsg').text(msg);
+  }
+
+  function hideAlert() {
+    $('#loginAlert').removeClass('show');
+  }
+
+  /* ─── INPUT CLEANUP ─── */
+  $('input').on('input', function () {
+    $(this).removeClass('is-invalid');
+    hideAlert();
+  });
+
+  /* ─── TOGGLE PASSWORD ─── */
+  $('#toggleLoginPwd').on('click', function () {
+    const $input = $('#loginPassword');
+    $input.attr('type', $input.attr('type') === 'password' ? 'text' : 'password');
+    $(this).toggleClass('fa-eye fa-eye-slash');
+  });
+
+  /* ─── LOGIN SUBMIT ─── */
+  $('#loginForm').on('submit', function (e) {
+    e.preventDefault();
+
+    const email = $('#loginEmail').val().trim();
+    const password = $('#loginPassword').val();
+
+    let valid = true;
+
+    // Validate email
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      $('#loginEmail').addClass('is-invalid');
+      valid = false;
+    }
+
+    // Validate password
+    if (!password) {
+      $('#loginPassword').addClass('is-invalid');
+      valid = false;
+    }
+
+    if (!valid) return;
+
+    const $btn = $('#loginBtn');
+    $btn.addClass('loading').prop('disabled', true);
+
+    /* ─── CHECK LOCAL USERS ─── */
+    const users = getUsers();
+
+    const foundUser = users.find(user => {
+      return user.email === email && user.password === password;
+    });
+
+    setTimeout(() => {
+      $btn.removeClass('loading').prop('disabled', false);
+
+      if (foundUser) {
+        // SUCCESS
+        foundUser.isLoggedIn = true;
+        foundUser.lastLogin = new Date().toISOString();
+
+        saveSession(foundUser);
+
+        showAlert('success', 'Login successful! Redirecting...');
+
+        setTimeout(() => {
+          if (isAdmin(foundUser)) {
+            window.location.href = 'admin-dashboard.html';
+          } else {
+            window.location.href = 'dashboard.html';
+          }
+        }, 1200);
+
+      } else {
+        // FAILED LOGIN
+        showAlert('error', 'Invalid email or password');
+        $('#loginEmail, #loginPassword').addClass('is-invalid');
+      }
+
+    }, 800); // fake delay for UX
+
+  });
+
+});
+</script>
+</body>
+</html>
