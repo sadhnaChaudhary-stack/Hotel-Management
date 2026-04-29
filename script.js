@@ -167,12 +167,7 @@ $(document).ready(function () {
   });
 
   /* ---- Preloader ---- */
-  $(window).on('load', function () {
-    $('#preloader').fadeOut(600, function () {
-      $(this).remove();
-    });
-  });
-
+ 
 });
 
 
